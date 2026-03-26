@@ -3,105 +3,257 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>生コン書類管理 - Mill Box (プレビュー)</title>
+<title>Mill-Box OCRデモ</title>
 <style>
 @layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){*,:before,:after,::backdrop{--tw-border-style:solid;--tw-font-weight:initial;--tw-shadow:0 0 #0000;--tw-shadow-color:initial;--tw-shadow-alpha:100%;--tw-inset-shadow:0 0 #0000;--tw-inset-shadow-color:initial;--tw-inset-shadow-alpha:100%;--tw-ring-color:initial;--tw-ring-shadow:0 0 #0000;--tw-inset-ring-color:initial;--tw-inset-ring-shadow:0 0 #0000;--tw-ring-inset:initial;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-offset-shadow:0 0 #0000}}}@layer theme{:root,:host{--font-mono:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--color-red-500:#fb2c36;--color-orange-50:#fff7ed;--color-orange-700:#c53c00;--color-amber-50:#fffbeb;--color-amber-700:#b75000;--color-green-50:#f0fdf4;--color-green-600:#00a544;--color-green-700:#008138;--color-blue-50:#eff6ff;--color-blue-700:#1447e6;--color-purple-50:#faf5ff;--color-purple-700:#8200da;--color-pink-50:#fdf2f8;--color-pink-700:#c4005c;--color-gray-50:#f9fafb;--color-gray-100:#f3f4f6;--color-gray-300:#d1d5dc;--color-gray-400:#99a1af;--color-gray-500:#6a7282;--color-gray-600:#4a5565;--color-gray-700:#364153;--color-gray-800:#1e2939;--color-white:#fff;--spacing:.25rem;--container-md:28rem;--text-base:1rem;--text-base--line-height:calc(1.5 / 1);--font-weight-medium:500;--font-weight-bold:700;--default-transition-duration:.15s;--default-transition-timing-function:cubic-bezier(.4, 0, .2, 1);--default-font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--default-mono-font-family:var(--font-mono)}@supports (color:lab(0% 0 0)){:root,:host{--color-red-500:lab(55.4814% 75.0732 48.8528);--color-orange-50:lab(97.7008% 1.53735 5.90649);--color-orange-700:lab(46.4615% 57.7275 70.8507);--color-amber-50:lab(98.6252% -.635922 8.42309);--color-amber-700:lab(47.2709% 42.9082 69.2966);--color-green-50:lab(98.1563% -5.60117 2.75915);--color-green-600:lab(59.0978% -58.6621 41.2579);--color-green-700:lab(47.0329% -47.0239 31.4788);--color-blue-50:lab(96.492% -1.14644 -5.11479);--color-blue-700:lab(36.9089% 35.0961 -85.6872);--color-purple-50:lab(97.1627% 2.99937 -4.13398);--color-purple-700:lab(36.1758% 69.8525 -80.0381);--color-pink-50:lab(96.4459% 4.53997 -1.49434);--color-pink-700:lab(42.1737% 71.8009 7.42233);--color-gray-50:lab(98.2596% -.247031 -.706708);--color-gray-100:lab(96.1596% -.0823438 -1.13575);--color-gray-300:lab(85.1236% -.612259 -3.7138);--color-gray-400:lab(65.9269% -.832707 -8.17473);--color-gray-500:lab(47.7841% -.393182 -10.0268);--color-gray-600:lab(35.6337% -1.58697 -10.8425);--color-gray-700:lab(27.1134% -.956401 -12.3224);--color-gray-800:lab(16.1051% -1.18239 -11.7533)}}}@layer base{*,:after,:before,::backdrop{box-sizing:border-box;border:0 solid;margin:0;padding:0}::file-selector-button{box-sizing:border-box;border:0 solid;margin:0;padding:0}html,:host{-webkit-text-size-adjust:100%;tab-size:4;line-height:1.5;font-family:var(--default-font-family,ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");font-feature-settings:var(--default-font-feature-settings,normal);font-variation-settings:var(--default-font-variation-settings,normal);-webkit-tap-highlight-color:transparent}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:var(--default-mono-font-family,ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);font-feature-settings:var(--default-mono-font-feature-settings,normal);font-variation-settings:var(--default-mono-font-variation-settings,normal);font-size:1em}small{font-size:80%}sub,sup{vertical-align:baseline;font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}:-moz-focusring{outline:auto}progress{vertical-align:baseline}summary{display:list-item}ol,ul,menu{list-style:none}img,svg,video,canvas,audio,iframe,embed,object{vertical-align:middle;display:block}img,video{max-width:100%;height:auto}button,input,select,optgroup,textarea{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}::file-selector-button{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}:where(select:is([multiple],[size])) optgroup{font-weight:bolder}:where(select:is([multiple],[size])) optgroup option{padding-inline-start:20px}::file-selector-button{margin-inline-end:4px}::placeholder{opacity:1}@supports (not ((-webkit-appearance:-apple-pay-button))) or (contain-intrinsic-size:1px){::placeholder{color:currentColor}@supports (color:color-mix(in lab, red, red)){::placeholder{color:color-mix(in oklab, currentcolor 50%, transparent)}}}textarea{resize:vertical}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-date-and-time-value{min-height:1lh;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-datetime-edit{padding-block:0}::-webkit-datetime-edit-year-field{padding-block:0}::-webkit-datetime-edit-month-field{padding-block:0}::-webkit-datetime-edit-day-field{padding-block:0}::-webkit-datetime-edit-hour-field{padding-block:0}::-webkit-datetime-edit-minute-field{padding-block:0}::-webkit-datetime-edit-second-field{padding-block:0}::-webkit-datetime-edit-millisecond-field{padding-block:0}::-webkit-datetime-edit-meridiem-field{padding-block:0}::-webkit-calendar-picker-indicator{line-height:1}:-moz-ui-invalid{box-shadow:none}button,input:where([type=button],[type=reset],[type=submit]){appearance:button}::file-selector-button{appearance:button}::-webkit-inner-spin-button{height:auto}::-webkit-outer-spin-button{height:auto}[hidden]:where(:not([hidden=until-found])){display:none!important}}@layer components;@layer utilities{.start{inset-inline-start:var(--spacing)}.mx-auto{margin-inline:auto}.mt-2{margin-top:calc(var(--spacing) * 2)}.mt-3{margin-top:calc(var(--spacing) * 3)}.mr-1\.5{margin-right:calc(var(--spacing) * 1.5)}.mb-1{margin-bottom:calc(var(--spacing) * 1)}.mb-3{margin-bottom:calc(var(--spacing) * 3)}.block{display:block}.flex{display:flex}.hidden{display:none}.inline-block{display:inline-block}.inline-flex{display:inline-flex}.table{display:table}.h-3{height:calc(var(--spacing) * 3)}.h-3\.5{height:calc(var(--spacing) * 3.5)}.h-4{height:calc(var(--spacing) * 4)}.h-6{height:calc(var(--spacing) * 6)}.h-7{height:calc(var(--spacing) * 7)}.h-10{height:calc(var(--spacing) * 10)}.h-full{height:100%}.h-screen{height:100vh}.min-h-full{min-height:100%}.w-3{width:calc(var(--spacing) * 3)}.w-3\.5{width:calc(var(--spacing) * 3.5)}.w-4{width:calc(var(--spacing) * 4)}.w-6{width:calc(var(--spacing) * 6)}.w-7{width:calc(var(--spacing) * 7)}.w-8{width:calc(var(--spacing) * 8)}.w-10{width:calc(var(--spacing) * 10)}.w-\[60px\]{width:60px}.w-\[90px\]{width:90px}.w-\[100px\]{width:100px}.w-\[120px\]{width:120px}.w-\[180px\]{width:180px}.w-full{width:100%}.max-w-md{max-width:var(--container-md)}.min-w-\[160px\]{min-width:160px}.flex-1{flex:1}.shrink-0{flex-shrink:0}.rotate-90{rotate:90deg}.cursor-pointer{cursor:pointer}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.items-end{align-items:flex-end}.justify-between{justify-content:space-between}.justify-center{justify-content:center}.gap-1{gap:calc(var(--spacing) * 1)}.gap-1\.5{gap:calc(var(--spacing) * 1.5)}.gap-2{gap:calc(var(--spacing) * 2)}.gap-2\.5{gap:calc(var(--spacing) * 2.5)}.gap-3{gap:calc(var(--spacing) * 3)}.gap-6{gap:calc(var(--spacing) * 6)}.truncate{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.overflow-auto{overflow:auto}.overflow-hidden{overflow:hidden}.rounded{border-radius:.25rem}.rounded-full{border-radius:3.40282e38px}.border{border-style:var(--tw-border-style);border-width:1px}.border-2{border-style:var(--tw-border-style);border-width:2px}.border-t{border-top-style:var(--tw-border-style);border-top-width:1px}.border-r{border-right-style:var(--tw-border-style);border-right-width:1px}.border-b{border-bottom-style:var(--tw-border-style);border-bottom-width:1px}.border-l-3{border-left-style:var(--tw-border-style);border-left-width:3px}.border-dashed{--tw-border-style:dashed;border-style:dashed}.border-\[\#1a6fc9\]{border-color:#1a6fc9}.border-\[\#d0d0d0\]{border-color:#d0d0d0}.border-\[\#e0e0e0\]{border-color:#e0e0e0}.border-\[\#f0f0f0\]{border-color:#f0f0f0}.border-gray-300{border-color:var(--color-gray-300)}.bg-\[\#e8f0fe\]{background-color:#e8f0fe}.bg-\[\#f5f5f5\]{background-color:#f5f5f5}.bg-\[\#fafafa\]{background-color:#fafafa}.bg-amber-50{background-color:var(--color-amber-50)}.bg-blue-50{background-color:var(--color-blue-50)}.bg-gray-100{background-color:var(--color-gray-100)}.bg-gray-300{background-color:var(--color-gray-300)}.bg-green-50{background-color:var(--color-green-50)}.bg-orange-50{background-color:var(--color-orange-50)}.bg-pink-50{background-color:var(--color-pink-50)}.bg-purple-50{background-color:var(--color-purple-50)}.bg-white{background-color:var(--color-white)}.p-3{padding:calc(var(--spacing) * 3)}.p-6{padding:calc(var(--spacing) * 6)}.p-16{padding:calc(var(--spacing) * 16)}.px-2{padding-inline:calc(var(--spacing) * 2)}.px-2\.5{padding-inline:calc(var(--spacing) * 2.5)}.px-3\.5{padding-inline:calc(var(--spacing) * 3.5)}.px-4{padding-inline:calc(var(--spacing) * 4)}.px-6{padding-inline:calc(var(--spacing) * 6)}.py-0\.5{padding-block:calc(var(--spacing) * .5)}.py-1\.5{padding-block:calc(var(--spacing) * 1.5)}.py-2{padding-block:calc(var(--spacing) * 2)}.py-2\.5{padding-block:calc(var(--spacing) * 2.5)}.py-3{padding-block:calc(var(--spacing) * 3)}.py-4{padding-block:calc(var(--spacing) * 4)}.pb-1\.5{padding-bottom:calc(var(--spacing) * 1.5)}.pb-3{padding-bottom:calc(var(--spacing) * 3)}.text-center{text-align:center}.text-left{text-align:left}.text-right{text-align:right}.text-base{font-size:var(--text-base);line-height:var(--tw-leading,var(--text-base--line-height))}.text-\[11px\]{font-size:11px}.text-\[12px\]{font-size:12px}.text-\[13px\]{font-size:13px}.text-\[14px\]{font-size:14px}.font-bold{--tw-font-weight:var(--font-weight-bold);font-weight:var(--font-weight-bold)}.font-medium{--tw-font-weight:var(--font-weight-medium);font-weight:var(--font-weight-medium)}.text-\[\#1a6fc9\]{color:#1a6fc9}.text-amber-700{color:var(--color-amber-700)}.text-blue-700{color:var(--color-blue-700)}.text-gray-300{color:var(--color-gray-300)}.text-gray-400{color:var(--color-gray-400)}.text-gray-500{color:var(--color-gray-500)}.text-gray-600{color:var(--color-gray-600)}.text-gray-700{color:var(--color-gray-700)}.text-gray-800{color:var(--color-gray-800)}.text-green-600{color:var(--color-green-600)}.text-green-700{color:var(--color-green-700)}.text-orange-700{color:var(--color-orange-700)}.text-pink-700{color:var(--color-pink-700)}.text-purple-700{color:var(--color-purple-700)}.text-white{color:var(--color-white)}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ring-2{--tw-ring-shadow:var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color,currentcolor);box-shadow:var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}.ring-\[\#1a6fc9\]\/20{--tw-ring-color:#1a6fc933}@supports (color:lab(0% 0 0)){.ring-\[\#1a6fc9\]\/20{--tw-ring-color:lab(45.8611% 1.84125 -54.6223/.2)}}.transition-colors{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,--tw-gradient-from,--tw-gradient-via,--tw-gradient-to;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.transition-transform{transition-property:transform,translate,scale,rotate;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}@media (hover:hover){.hover\:border-\[\#aaa\]:hover{border-color:#aaa}.hover\:border-gray-400:hover{border-color:var(--color-gray-400)}.hover\:bg-\[\#fafafa\]:hover{background-color:#fafafa}.hover\:bg-blue-50:hover{background-color:var(--color-blue-50)}.hover\:bg-gray-50:hover{background-color:var(--color-gray-50)}.hover\:text-\[\#1a6fc9\]:hover{color:#1a6fc9}.hover\:text-gray-500:hover{color:var(--color-gray-500)}.hover\:text-gray-600:hover{color:var(--color-gray-600)}.hover\:text-gray-800:hover{color:var(--color-gray-800)}.hover\:text-red-500:hover{color:var(--color-red-500)}}.disabled\:cursor-not-allowed:disabled{cursor:not-allowed}.disabled\:opacity-40:disabled{opacity:.4}}:root{--background:#f5f5f5;--foreground:#333;--brand-blue:#1a6fc9;--brand-blue-light:#e8f0fe;--border-color:#e0e0e0;--sidebar-width:180px}body{background:var(--background);color:var(--foreground);font-size:14px}::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}@property --tw-border-style{syntax:"*";inherits:false;initial-value:solid}@property --tw-font-weight{syntax:"*";inherits:false}@property --tw-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-shadow-color{syntax:"*";inherits:false}@property --tw-shadow-alpha{syntax:"<percentage>";inherits:false;initial-value:100%}@property --tw-inset-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-shadow-color{syntax:"*";inherits:false}@property --tw-inset-shadow-alpha{syntax:"<percentage>";inherits:false;initial-value:100%}@property --tw-ring-color{syntax:"*";inherits:false}@property --tw-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-ring-color{syntax:"*";inherits:false}@property --tw-inset-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-ring-inset{syntax:"*";inherits:false}@property --tw-ring-offset-width{syntax:"<length>";inherits:false;initial-value:0}@property --tw-ring-offset-color{syntax:"*";inherits:false;initial-value:#fff}@property --tw-ring-offset-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}
+/* Additional utilities for OCR UI */
+.fixed{position:fixed}.inset-0{inset:0}.z-50{z-index:50}.p-1{padding:.25rem}.p-4{padding:1rem}.p-5{padding:1.25rem}
+.w-5{width:1.25rem}.h-5{height:1.25rem}.w-\[160px\]{width:160px}
+.bg-black-overlay{background-color:rgba(0,0,0,0.3)}
+.shadow-xl{box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1)}
+.rounded-lg{border-radius:.5rem}.max-w-2xl{max-width:42rem}.max-h-85vh{max-height:85vh}
+.bg-brand{background-color:#1a6fc9}.hover-bg-brand:hover{background-color:#155ba5}
+.text-blue-500{color:#3b82f6}.text-amber-500{color:#f59e0b}.text-amber-600{color:#d97706}
+.bg-amber-50-c{background-color:#fffbeb}
+@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}
+.opacity-25{opacity:.25}.opacity-75{opacity:.75}
+.hover-underline:hover{text-decoration:underline}
+.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-3-c{padding-top:.75rem;padding-bottom:.75rem}
+.mt-0-5{margin-top:.125rem}
 </style>
 </head>
 <body class="min-h-full flex flex-col bg-[#f5f5f5]">
-<div class="flex h-screen overflow-hidden">
+<div id="app" class="flex h-screen overflow-hidden">
 <!-- Sidebar -->
 <aside class="w-[180px] shrink-0 bg-white border-r border-[#e0e0e0] flex flex-col">
-<div class="px-4 py-4 border-b border-[#e0e0e0]">
-<div class="flex items-center gap-2">
-<svg class="w-6 h-6 text-[#1a6fc9]" fill="currentColor" viewBox="0 0 24 24">
-<rect x="3" y="3" width="8" height="8" rx="1"></rect>
-<rect x="13" y="3" width="8" height="8" rx="1" opacity="0.6"></rect>
-<rect x="3" y="13" width="8" height="8" rx="1" opacity="0.6"></rect>
-<rect x="13" y="13" width="8" height="8" rx="1" opacity="0.3"></rect>
-</svg>
-<span class="text-base font-bold text-gray-800">Mill-Box</span>
-</div>
-</div>
+<div class="px-4 py-4 border-b border-[#e0e0e0]"><div class="flex items-center gap-2">
+<svg class="w-6 h-6 text-[#1a6fc9]" fill="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1" opacity="0.6"/><rect x="3" y="13" width="8" height="8" rx="1" opacity="0.6"/><rect x="13" y="13" width="8" height="8" rx="1" opacity="0.3"/></svg>
+<span class="text-base font-bold text-gray-800">Mill-Box</span></div></div>
 <nav class="flex-1 py-2">
-<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-[#1a6fc9] bg-[#e8f0fe] font-medium border-l-3 border-[#1a6fc9]">
-<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
-生コン書類</a>
-<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">
-<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 0 1-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0 1 12 18.375"/></svg>
-帳票</a>
-<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">
-<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-利用料</a>
-<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">
-<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
-ユーザー</a>
-<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">
-<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
-admin</a>
+<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-[#1a6fc9] bg-[#e8f0fe] font-medium border-l-3 border-[#1a6fc9]"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>生コン書類</a>
+<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">帳票</a>
+<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">利用料</a>
+<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">ユーザー</a>
+<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">admin</a>
 </nav>
-<div class="border-t border-[#e0e0e0] py-2">
-<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">
-<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"/></svg>
-ログアウト</a>
-</div>
-<div class="border-t border-[#e0e0e0] px-4 py-3">
-<div class="flex items-center gap-2">
+<div class="border-t border-[#e0e0e0] px-4 py-3"><div class="flex items-center gap-2">
 <div class="w-7 h-7 rounded-full bg-gray-300 flex items-center justify-center text-[11px] text-white font-bold">U</div>
-<div class="overflow-hidden">
-<p class="text-[12px] text-gray-700 truncate">user@example.com</p>
-<p class="text-[11px] text-gray-400">demo</p>
-</div>
-</div>
-</div>
+<div class="overflow-hidden"><p class="text-[12px] text-gray-700 truncate">user@example.com</p><p class="text-[11px] text-gray-400">demo</p></div></div></div>
 </aside>
+
 <!-- Main -->
 <div class="flex-1 flex flex-col overflow-hidden">
 <header class="bg-white border-b border-[#e0e0e0] px-6 py-3 flex items-center justify-between shrink-0">
 <h1 class="text-base font-bold text-gray-800">生コン書類一括アップロード</h1>
 <div class="flex items-center gap-2">
-<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-[#1a6fc9] text-[#1a6fc9] rounded text-[13px] font-medium hover:bg-blue-50">
-<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-PDFアップロード</button>
-<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-[#e0e0e0] text-gray-600 rounded text-[13px] font-medium disabled:opacity-40 disabled:cursor-not-allowed" disabled>
-<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"/></svg>
-ロット仕分け</button>
-</div>
-</header>
+<button onclick="document.getElementById('file-input').click()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-[#1a6fc9] text-[#1a6fc9] rounded text-[13px] font-medium hover:bg-blue-50 transition-colors">+ PDFアップロード</button>
+<button id="btn-lot" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-[#e0e0e0] text-gray-600 rounded text-[13px] font-medium disabled:opacity-40 disabled:cursor-not-allowed" disabled>ロット仕分け</button>
+</div></header>
+
+<!-- Filter -->
 <div class="bg-white border-b border-[#e0e0e0] shrink-0">
-<div class="flex items-center gap-1.5 px-6 py-2.5 text-[13px] text-gray-600">
-<svg class="w-3 h-3 rotate-90" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 0 1 .02-1.06L11.168 10 7.23 6.29a.75.75 0 1 1 1.04-1.08l4.5 4.25a.75.75 0 0 1 0 1.08l-4.5 4.25a.75.75 0 0 1-1.06-.02Z" clip-rule="evenodd"/></svg>
-書類を絞り込み</div>
-<div class="px-6 pb-3 flex items-end gap-6">
-<div>
-<label class="block text-[12px] text-gray-500 mb-1">書類分類</label>
-<select class="border border-[#e0e0e0] rounded px-2.5 py-1.5 text-[13px] text-gray-700 bg-white min-w-[160px]">
-<option selected>指定なし</option>
-<option>配合計画書</option>
-<option>フレッシュ試験</option>
-<option>圧縮強度試験</option>
-<option>納入伝票</option>
-<option>打設計画書</option>
-<option>受入写真</option>
-<option>未分類</option>
-</select>
-</div>
-<button class="text-[12px] text-gray-400 hover:text-gray-600 pb-1.5">条件をクリア</button>
-</div>
-</div>
+<button onclick="toggleFilter()" class="flex items-center gap-1.5 px-6 py-2.5 text-[13px] text-gray-600 hover:text-gray-800 w-full text-left">
+<svg id="filter-arrow" class="w-3 h-3 rotate-90 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 0 1 .02-1.06L11.168 10 7.23 6.29a.75.75 0 1 1 1.04-1.08l4.5 4.25a.75.75 0 0 1 0 1.08l-4.5 4.25a.75.75 0 0 1-1.06-.02Z" clip-rule="evenodd"/></svg>
+書類を絞り込み</button>
+<div id="filter-panel" class="px-6 pb-3 flex items-end gap-6">
+<div><label class="block text-[12px] text-gray-500 mb-1">書類分類</label>
+<select id="filter-select" onchange="render()" class="border border-[#e0e0e0] rounded px-2.5 py-1.5 text-[13px] text-gray-700 bg-white min-w-[160px]">
+<option>指定なし</option><option>配合計画書</option><option>フレッシュ試験</option><option>圧縮強度試験</option><option>納入伝票</option><option>打設計画書</option><option>受入写真</option><option>未分類</option>
+</select></div>
+<button onclick="document.getElementById('filter-select').value='指定なし';render()" class="text-[12px] text-gray-400 hover:text-gray-600 pb-1.5">条件をクリア</button>
+</div></div>
+
+<!-- Content -->
 <div class="flex-1 overflow-auto p-6">
-<div class="rounded border-2 border-dashed p-16 text-center cursor-pointer bg-white border-[#d0d0d0] hover:border-[#aaa]">
-<div class="flex flex-col items-center gap-3">
-<svg class="w-10 h-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/></svg>
-<p class="text-[14px] text-gray-600">ここに生コン関連書類をドラッグ＆ドロップ</p>
-<p class="text-[12px] text-gray-400">または クリックしてファイルを選択（PDF / JPG / PNG）</p>
-<div class="flex flex-wrap justify-center gap-1.5 mt-2 text-[11px] text-gray-400">
-<span>配合計画書</span><span><span class="mr-1.5">|</span>打設計画書</span><span><span class="mr-1.5">|</span>フレッシュ試験</span><span><span class="mr-1.5">|</span>圧縮強度試験</span><span><span class="mr-1.5">|</span>納入伝票</span><span><span class="mr-1.5">|</span>受入写真</span>
+<input id="file-input" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" onchange="handleFiles(this.files);this.value=''" class="hidden"/>
+<div id="content"></div>
+</div></div></div>
+
+<!-- Modal -->
+<div id="modal" class="fixed inset-0 bg-black-overlay z-50 flex items-center justify-center p-4" style="display:none">
+<div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-85vh flex flex-col">
+<div class="flex items-center justify-between px-5 py-3 border-b border-[#e0e0e0]">
+<div><h2 class="text-[15px] font-bold text-gray-800">OCR抽出結果</h2><p id="modal-filename" class="text-[12px] text-gray-400 mt-0-5 truncate" style="max-width:28rem"></p></div>
+<button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 p-1">&times;</button>
 </div>
+<div class="flex-1 overflow-auto p-5">
+<div id="modal-header" class="flex items-center gap-3 mb-3"></div>
+<div class="rounded border border-[#e0e0e0] overflow-hidden"><table class="w-full text-[13px]">
+<thead><tr class="bg-[#fafafa] border-b border-[#e0e0e0]"><th class="text-left px-4 py-2 font-medium text-gray-500 w-[160px]">項目</th><th class="text-left px-4 py-2 font-medium text-gray-500">抽出値</th></tr></thead>
+<tbody id="modal-fields"></tbody></table></div>
 </div>
-</div>
-</div>
-</div>
-</div>
+<div class="px-5 py-3 border-t border-[#e0e0e0] flex justify-between gap-2" style="justify-content:flex-end">
+<button onclick="closeModal()" class="px-4 py-1.5 text-[13px] text-gray-600 border border-[#e0e0e0] rounded hover:bg-gray-50">閉じる</button>
+<button class="px-4 py-1.5 text-[13px] text-white bg-brand rounded hover-bg-brand">データを確定</button>
+</div></div></div>
+
+<script>
+var files = [];
+var filterOpen = true;
+
+function classify(name) {
+  var l = name.toLowerCase();
+  if (l.indexOf('配合') >= 0 || l.indexOf('haigo') >= 0) return '配合計画書';
+  if (l.indexOf('フレッシュ') >= 0 || l.indexOf('fresh') >= 0) return 'フレッシュ試験';
+  if (l.indexOf('圧縮') >= 0 || l.indexOf('強度') >= 0 || l.indexOf('strength') >= 0) return '圧縮強度試験';
+  if (l.indexOf('納入') >= 0 || l.indexOf('伝票') >= 0 || l.indexOf('delivery') >= 0) return '納入伝票';
+  if (l.indexOf('打設') >= 0 || l.indexOf('計画') >= 0 || l.indexOf('plan') >= 0) return '打設計画書';
+  if (/\.(jpg|jpeg|png)$/i.test(l)) return '受入写真';
+  return '未分類';
+}
+
+var catStyles = {
+  '配合計画書': 'bg-blue-50 text-blue-700', 'フレッシュ試験': 'bg-green-50 text-green-700',
+  '圧縮強度試験': 'bg-purple-50 text-purple-700', '納入伝票': 'bg-amber-50 text-amber-700',
+  '打設計画書': 'bg-orange-50 text-orange-700', '受入写真': 'bg-pink-50 text-pink-700',
+  '未分類': 'bg-gray-100 text-gray-500'
+};
+
+var mockData = {
+  'フレッシュ試験': { type:'フレッシュコンクリート試験成績表', conf:0.95, fields:{ '試験日':'2024-06-15','工事名':'○○ビル新築工事','打設箇所':'2F スラブ','配合記号':'30-18-20N','工場名':'△△生コン','スランプ値':'18.0 cm','空気量':'4.5 %','コンクリート温度':'26.5 ℃','外気温':'28.0 ℃','塩化物含有量':'0.18 kg/m³','単位水量推定値':'168 kg/m³'}},
+  '圧縮強度試験': { type:'コンクリート圧縮強度試験成績表', conf:0.92, fields:{ '試験日':'2024-07-13','工事名':'○○ビル新築工事','打設日':'2024-06-15','材齢':'28日','配合記号':'30-18-20N','設計基準強度Fc':'30 N/mm²','呼び強度':'33 N/mm²','供試体1':'35.2 N/mm²','供試体2':'34.8 N/mm²','供試体3':'36.1 N/mm²','平均強度':'35.4 N/mm²','判定':'合格 (35.4 ≧ 30)'}},
+  '納入伝票': { type:'納入伝票', conf:0.88, fields:{ '伝票番号':'N-2024-0615-001','納入日':'2024-06-15','工場名':'△△生コン','配合記号':'30-18-20N','数量':'4.5 m³','出荷時刻':'08:30','到着時刻':'09:05','車両番号':'品川 100 あ 1234'}},
+  '配合計画書': { type:'配合計画書', conf:0.90, fields:{ '工場名':'△△生コン','配合記号':'30-18-20N','呼び強度':'33 N/mm²','スランプ':'18 cm','粗骨材最大寸法':'20 mm','セメント種類':'普通ポルトランドセメント','水セメント比':'48.5 %','単位水量':'170 kg/m³','単位セメント量':'351 kg/m³'}},
+  '受入写真': { type:'受入検査写真', conf:0.85, fields:{ '撮影日':'2024-06-15','工事名':'○○ビル新築工事','打設箇所':'2F スラブ','黒板記載_スランプ':'18.0 cm','黒板記載_空気量':'4.5 %','黒板記載_温度':'26.5 ℃'}},
+  '打設計画書': { type:'打設計画書', conf:0.87, fields:{ '工事名':'○○ビル新築工事','打設日':'2024-06-15','打設箇所':'2F スラブ','配合記号':'30-18-20N','予定数量':'45.0 m³','ポンプ車':'36m級'}},
+  '未分類': { type:'不明な書類', conf:0.60, fields:{ '工事名':'○○ビル新築工事','備考':'書類種別を自動判定できませんでした'}}
+};
+
+function formatSize(b) {
+  if (b < 1024) return b + ' B';
+  if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+  return (b/(1024*1024)).toFixed(1) + ' MB';
+}
+
+function handleFiles(fileList) {
+  var accepted = ['application/pdf','image/jpeg','image/png'];
+  for (var i = 0; i < fileList.length; i++) {
+    var f = fileList[i];
+    if (accepted.indexOf(f.type) >= 0) {
+      var id = Date.now() + '-' + i + '-' + Math.random().toString(36).slice(2,8);
+      files.push({ id:id, name:f.name, size:f.size, ocrStatus:'processing', ocrResult:null });
+      startOcr(id, f.name);
+    }
+  }
+  render();
+}
+
+function startOcr(id, name) {
+  var delay = 800 + Math.random() * 1200;
+  setTimeout(function() {
+    var cat = classify(name);
+    var mock = mockData[cat] || mockData['未分類'];
+    for (var i = 0; i < files.length; i++) {
+      if (files[i].id === id) {
+        files[i].ocrStatus = 'done';
+        files[i].ocrResult = mock;
+        break;
+      }
+    }
+    render();
+  }, delay);
+}
+
+function removeFile(id) {
+  files = files.filter(function(f) { return f.id !== id; });
+  render();
+}
+
+function toggleFilter() {
+  filterOpen = !filterOpen;
+  document.getElementById('filter-panel').style.display = filterOpen ? '' : 'none';
+  document.getElementById('filter-arrow').style.rotate = filterOpen ? '90deg' : '0deg';
+}
+
+function openModal(id) {
+  var f = files.find(function(x){return x.id===id});
+  if (!f || !f.ocrResult) return;
+  document.getElementById('modal-filename').textContent = f.name;
+  var hdr = '<span style="display:inline-block;background:#e8f0fe;color:#1a6fc9;font-size:13px;font-weight:500;padding:4px 12px;border-radius:4px">' + f.ocrResult.type + '</span>';
+  hdr += '<span style="font-size:12px;color:#99a1af">信頼度: ' + Math.round(f.ocrResult.conf*100) + '%</span>';
+  hdr += '<span style="font-size:11px;background:#fffbeb;color:#d97706;padding:2px 8px;border-radius:4px">デモモード</span>';
+  document.getElementById('modal-header').innerHTML = hdr;
+  var fields = f.ocrResult.fields;
+  var keys = Object.keys(fields);
+  var rows = '';
+  for (var i = 0; i < keys.length; i++) {
+    var border = i < keys.length - 1 ? ' border-b border-[#f0f0f0]' : '';
+    rows += '<tr class="' + border + '"><td class="px-4 py-2 text-gray-500 font-medium">' + keys[i] + '</td><td class="px-4 py-2 text-gray-800">' + fields[keys[i]] + '</td></tr>';
+  }
+  document.getElementById('modal-fields').innerHTML = rows;
+  document.getElementById('modal').style.display = '';
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+function render() {
+  var filter = document.getElementById('filter-select').value;
+  var filtered = filter === '指定なし' ? files : files.filter(function(f) { return classify(f.name) === filter; });
+  var el = document.getElementById('content');
+  document.getElementById('btn-lot').disabled = files.length === 0;
+
+  if (files.length === 0) {
+    el.innerHTML = '<div id="dropzone" class="rounded border-2 border-dashed border-[#d0d0d0] p-16 text-center cursor-pointer bg-white hover:border-[#aaa] transition-colors" onclick="document.getElementById(\'file-input\').click()">' +
+      '<div class="flex flex-col items-center gap-3">' +
+      '<svg class="w-10 h-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/></svg>' +
+      '<p class="text-[14px] text-gray-600">ここに生コン関連書類をドラッグ＆ドロップ</p>' +
+      '<p class="text-[12px] text-gray-400">または クリックしてファイルを選択（PDF / JPG / PNG）</p>' +
+      '<p class="text-[11px] text-amber-500">アップロード後、自動でAI-OCRが実行されます</p>' +
+      '<div class="flex flex-wrap justify-center gap-1.5 mt-2 text-[11px] text-gray-400">配合計画書 | 打設計画書 | フレッシュ試験 | 圧縮強度試験 | 納入伝票 | 受入写真</div>' +
+      '</div></div>';
+    setupDrop(document.getElementById('dropzone'));
+    return;
+  }
+
+  var processing = files.some(function(f){return f.ocrStatus==='processing'});
+  var html = '<div class="mb-3 flex items-center justify-between"><p class="text-[13px] text-gray-500">' +
+    filtered.length + '件' + (filter !== '指定なし' ? ' (' + filter + ')' : '') + ' / 全' + files.length + '件' +
+    (processing ? ' <span class="text-blue-500">OCR処理中...</span>' : '') +
+    '</p><button onclick="files=[];render()" class="text-[12px] text-gray-400 hover:text-red-500">すべて削除</button></div>';
+
+  html += '<div id="table-wrap" class="rounded border border-[#e0e0e0] bg-white overflow-hidden"><table class="w-full text-[13px]"><thead><tr class="bg-[#fafafa] border-b border-[#e0e0e0]">' +
+    '<th class="text-left px-4 py-2.5 font-medium text-gray-500 w-8"><input type="checkbox"/></th>' +
+    '<th class="text-left px-4 py-2.5 font-medium text-gray-500">ファイル名</th>' +
+    '<th class="text-left px-4 py-2.5 font-medium text-gray-500 w-[120px]">分類</th>' +
+    '<th class="text-left px-4 py-2.5 font-medium text-gray-500 w-[160px]">OCRステータス</th>' +
+    '<th class="text-right px-4 py-2.5 font-medium text-gray-500 w-[90px]">サイズ</th>' +
+    '<th class="text-center px-4 py-2.5 font-medium text-gray-500 w-10"></th></tr></thead><tbody>';
+
+  for (var i = 0; i < filtered.length; i++) {
+    var f = filtered[i];
+    var cat = classify(f.name);
+    var cs = catStyles[cat] || catStyles['未分類'];
+    var status = '';
+    if (f.ocrStatus === 'processing') {
+      status = '<span class="inline-flex items-center gap-1 text-[12px] text-blue-500"><svg class="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>OCR処理中...</span>';
+    } else if (f.ocrStatus === 'done') {
+      status = '<a href="#" onclick="openModal(\'' + f.id + '\');return false" class="inline-flex items-center gap-1 text-[12px] text-green-600 hover-underline" style="cursor:pointer"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>抽出完了 →結果を見る</a>';
+    }
+    html += '<tr class="border-b border-[#f0f0f0] hover:bg-[#fafafa] transition-colors">' +
+      '<td class="px-4 py-2.5"><input type="checkbox"/></td>' +
+      '<td class="px-4 py-2.5 text-gray-800"><span class="truncate block max-w-md">' + f.name + '</span></td>' +
+      '<td class="px-4 py-2.5"><span class="inline-block rounded px-2 py-0.5 text-[12px] font-medium ' + cs + '">' + cat + '</span></td>' +
+      '<td class="px-4 py-2.5">' + status + '</td>' +
+      '<td class="px-4 py-2.5 text-right text-gray-500">' + formatSize(f.size) + '</td>' +
+      '<td class="px-4 py-2.5 text-center"><button onclick="removeFile(\'' + f.id + '\')" class="text-gray-300 hover:text-red-500 transition-colors" style="cursor:pointer">&times;</button></td></tr>';
+  }
+  html += '</tbody></table></div>';
+  html += '<div onclick="document.getElementById(\'file-input\').click()" class="mt-3 rounded border border-dashed border-[#d0d0d0] p-3 text-center text-[12px] text-gray-400 cursor-pointer hover:border-gray-400 hover:text-gray-500 transition-colors">+ さらにファイルを追加</div>';
+  el.innerHTML = html;
+  setupDrop(document.getElementById('table-wrap'));
+}
+
+function setupDrop(el) {
+  if (!el) return;
+  el.addEventListener('dragover', function(e) { e.preventDefault(); el.style.borderColor = '#1a6fc9'; });
+  el.addEventListener('dragleave', function(e) { e.preventDefault(); el.style.borderColor = ''; });
+  el.addEventListener('drop', function(e) { e.preventDefault(); el.style.borderColor = ''; if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files); });
+}
+
+// Init
+render();
+</script>
 </body>
 </html>
