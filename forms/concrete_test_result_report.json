@@ -1,0 +1,61 @@
+{
+  "form_name": "コンクリート工事施工結果報告書（コンクリートの試験結果報告）",
+  "source_page": 3,
+  "fields": [
+    {
+      "key": "rows",
+      "label": "結果一覧",
+      "type": "array",
+      "row_fields": [
+        "no",
+        "placement_location",
+        "placement_period",
+        "fc",
+        "fq",
+        "curing_method",
+        "required_strength_art74",
+        "required_strength_art76",
+        "test_agency",
+        "tokyo_registration_number",
+        "test_period",
+        "has_nonconformance",
+        "pass_fail"
+      ]
+    },
+    {
+      "key": "nonconformance_detail",
+      "label": "不適格箇所の詳細",
+      "type": "text"
+    },
+    {
+      "key": "placement_volume_plan",
+      "label": "打込容積_計画",
+      "type": "number"
+    },
+    {
+      "key": "placement_volume_actual",
+      "label": "打込容積_実施",
+      "type": "number"
+    },
+    {
+      "key": "test_count_plan",
+      "label": "試験回数_計画",
+      "type": "number"
+    },
+    {
+      "key": "test_count_actual",
+      "label": "試験回数_実施",
+      "type": "number"
+    },
+    {
+      "key": "center_test_count_plan",
+      "label": "センター試験回数_計画",
+      "type": "string"
+    },
+    {
+      "key": "center_test_count_actual",
+      "label": "センター試験回数_実施",
+      "type": "string"
+    }
+  ]
+}

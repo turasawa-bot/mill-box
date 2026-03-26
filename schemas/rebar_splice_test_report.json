@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "rows": {
+      "type": "array",
+      "description": "結果一覧"
+    },
+    "nonconformance_detail": {
+      "type": "string",
+      "description": "不適格箇所の詳細"
+    },
+    "splice_count_plan": {
+      "type": ["number", "integer", "string"],
+      "description": "継手箇所数_計画"
+    },
+    "splice_count_actual": {
+      "type": ["number", "integer", "string"],
+      "description": "継手箇所数_実施"
+    },
+    "test_count_plan": {
+      "type": ["number", "integer", "string"],
+      "description": "試験回数_計画"
+    },
+    "test_count_actual": {
+      "type": ["number", "integer", "string"],
+      "description": "試験回数_実施"
+    },
+    "center_test_count_plan": {
+      "type": "string",
+      "description": "センター試験回数_計画"
+    },
+    "center_test_count_actual": {
+      "type": "string",
+      "description": "センター試験回数_実施"
+    },
+    "ut_plan": {
+      "type": "string",
+      "description": "超音波探傷・測定検査_計画"
+    },
+    "ut_actual": {
+      "type": "string",
+      "description": "超音波探傷・測定検査_実施"
+    }
+  },
+  "required": [
+    "rows",
+    "nonconformance_detail",
+    "splice_count_plan",
+    "splice_count_actual",
+    "test_count_plan",
+    "test_count_actual",
+    "center_test_count_plan",
+    "center_test_count_actual",
+    "ut_plan",
+    "ut_actual"
+  ]
+}

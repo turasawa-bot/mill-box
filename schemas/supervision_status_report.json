@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "supervisor_license_number": {
+      "type": "string",
+      "description": "工事監理者資格番号"
+    },
+    "supervisor_name": {
+      "type": "string",
+      "description": "工事監理者氏名"
+    },
+    "supervision_organization": {
+      "type": "string",
+      "description": "工事監理組織（各担当分野及び担当者名）"
+    },
+    "priority_items": {
+      "type": "string",
+      "description": "工事監理に関する重点項目"
+    },
+    "instructions_and_responses": {
+      "type": "string",
+      "description": "検査等における工事監理者からの主な指示・指摘事項及びそれらの対応方法"
+    },
+    "overall_supervisor_comment": {
+      "type": "string",
+      "description": "監理者総合所見"
+    }
+  },
+  "required": [
+    "supervisor_license_number",
+    "supervisor_name",
+    "supervision_organization",
+    "priority_items",
+    "instructions_and_responses",
+    "overall_supervisor_comment"
+  ]
+}

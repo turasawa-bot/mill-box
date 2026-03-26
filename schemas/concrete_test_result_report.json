@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "rows": {
+      "type": "array",
+      "description": "結果一覧"
+    },
+    "nonconformance_detail": {
+      "type": "string",
+      "description": "不適格箇所の詳細"
+    },
+    "placement_volume_plan": {
+      "type": ["number", "integer", "string"],
+      "description": "打込容積_計画"
+    },
+    "placement_volume_actual": {
+      "type": ["number", "integer", "string"],
+      "description": "打込容積_実施"
+    },
+    "test_count_plan": {
+      "type": ["number", "integer", "string"],
+      "description": "試験回数_計画"
+    },
+    "test_count_actual": {
+      "type": ["number", "integer", "string"],
+      "description": "試験回数_実施"
+    },
+    "center_test_count_plan": {
+      "type": "string",
+      "description": "センター試験回数_計画"
+    },
+    "center_test_count_actual": {
+      "type": "string",
+      "description": "センター試験回数_実施"
+    }
+  },
+  "required": [
+    "rows",
+    "nonconformance_detail",
+    "placement_volume_plan",
+    "placement_volume_actual",
+    "test_count_plan",
+    "test_count_actual",
+    "center_test_count_plan",
+    "center_test_count_actual"
+  ]
+}

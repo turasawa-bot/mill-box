@@ -1,0 +1,36 @@
+{
+  "form_name": "工事監理状況報告書",
+  "source_page": 2,
+  "fields": [
+    {
+      "key": "supervisor_license_number",
+      "label": "工事監理者資格番号",
+      "type": "string"
+    },
+    {
+      "key": "supervisor_name",
+      "label": "工事監理者氏名",
+      "type": "string"
+    },
+    {
+      "key": "supervision_organization",
+      "label": "工事監理組織（各担当分野及び担当者名）",
+      "type": "text"
+    },
+    {
+      "key": "priority_items",
+      "label": "工事監理に関する重点項目",
+      "type": "text"
+    },
+    {
+      "key": "instructions_and_responses",
+      "label": "検査等における工事監理者からの主な指示・指摘事項及びそれらの対応方法",
+      "type": "text"
+    },
+    {
+      "key": "overall_supervisor_comment",
+      "label": "監理者総合所見",
+      "type": "text"
+    }
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "submission_date": {
+      "type": "string",
+      "description": "提出日"
+    },
+    "submitted_to": {
+      "type": "string",
+      "description": "提出先"
+    },
+    "lead_supervisor_address": {
+      "type": "string",
+      "description": "代表となる工事監理者住所"
+    },
+    "lead_supervisor_phone": {
+      "type": "string",
+      "description": "代表となる工事監理者電話"
+    },
+    "lead_supervisor_company": {
+      "type": "string",
+      "description": "代表となる工事監理者会社名"
+    },
+    "architect_office_registration": {
+      "type": "string",
+      "description": "建築士事務所登録"
+    },
+    "lead_supervisor_name": {
+      "type": "string",
+      "description": "代表となる工事監理者氏名"
+    },
+    "lead_supervisor_license": {
+      "type": "string",
+      "description": "建築士資格"
+    },
+    "contractor_address": {
+      "type": "string",
+      "description": "工事施工者住所"
+    },
+    "contractor_phone": {
+      "type": "string",
+      "description": "工事施工者電話"
+    },
+    "contractor_company": {
+      "type": "string",
+      "description": "工事施工者会社名"
+    },
+    "contractor_license": {
+      "type": "string",
+      "description": "建設業許可"
+    },
+    "contractor_name": {
+      "type": "string",
+      "description": "工事施工者氏名"
+    },
+    "quality_contact_name": {
+      "type": "string",
+      "description": "品質窓口責任者氏名"
+    },
+    "quality_contact_phone": {
+      "type": "string",
+      "description": "品質窓口責任者電話"
+    },
+    "owner_address": {
+      "type": "string",
+      "description": "建築主住所"
+    },
+    "owner_phone": {
+      "type": "string",
+      "description": "建築主電話"
+    },
+    "owner_company": {
+      "type": "string",
+      "description": "建築主会社名"
+    },
+    "owner_name": {
+      "type": "string",
+      "description": "建築主氏名"
+    },
+    "plan_report_accept_date": {
+      "type": "string",
+      "description": "建築工事施工計画報告書受付年月日"
+    },
+    "plan_report_accept_number": {
+      "type": "string",
+      "description": "建築工事施工計画報告書受付番号"
+    },
+    "site_name": {
+      "type": "string",
+      "description": "工事現場名称"
+    },
+    "site_zone": {
+      "type": "string",
+      "description": "工区"
+    },
+    "building_block": {
+      "type": "string",
+      "description": "棟"
+    },
+    "construction_type": {
+      "type": "string",
+      "enum": [
+        "新築",
+        "増築",
+        "改築"
+      ],
+      "description": "工事の種類"
+    },
+    "site_address": {
+      "type": "string",
+      "description": "所在地"
+    },
+    "structural_designer_name": {
+      "type": "string",
+      "description": "構造設計者氏名"
+    },
+    "structural_designer_company": {
+      "type": "string",
+      "description": "構造設計者所属会社"
+    },
+    "structural_designer_phone": {
+      "type": "string",
+      "description": "構造設計者電話"
+    },
+    "site_manager_name": {
+      "type": "string",
+      "description": "現場代理人（所長）氏名"
+    },
+    "site_office": {
+      "type": "string",
+      "description": "現場事務所"
+    },
+    "site_office_phone": {
+      "type": "string",
+      "description": "現場事務所電話"
+    },
+    "above_ground_floors": {
+      "type": ["number", "integer", "string"],
+      "description": "階数_地上"
+    },
+    "below_ground_floors": {
+      "type": ["number", "integer", "string"],
+      "description": "階数_地下"
+    },
+    "penthouse_floors": {
+      "type": ["number", "integer", "string"],
+      "description": "階数_塔屋"
+    },
+    "building_area_m2": {
+      "type": ["number", "integer", "string"],
+      "description": "建築面積"
+    },
+    "total_floor_area_m2": {
+      "type": ["number", "integer", "string"],
+      "description": "延べ面積"
+    },
+    "structure_type": {
+      "type": "string",
+      "description": "構造"
+    },
+    "eaves_height_m": {
+      "type": ["number", "integer", "string"],
+      "description": "軒高"
+    },
+    "max_height_m": {
+      "type": ["number", "integer", "string"],
+      "description": "最高高さ"
+    },
+    "confirmation_issuer": {
+      "type": "string",
+      "description": "確認済証交付機関"
+    },
+    "confirmation_date": {
+      "type": "string",
+      "description": "確認・計画通知年月日"
+    },
+    "confirmation_number": {
+      "type": "string",
+      "description": "確認・計画通知番号"
+    },
+    "plan_changes": {
+      "type": "array",
+      "description": "計画変更一覧"
+    },
+    "route_x": {
+      "type": "string",
+      "description": "構造計算の方法(X)"
+    },
+    "route_y": {
+      "type": "string",
+      "description": "構造計算の方法(Y)"
+    },
+    "route_other": {
+      "type": "string",
+      "description": "その他の構造計算方法"
+    },
+    "minor_changes_after_revision": {
+      "type": "string",
+      "description": "計画変更以降の軽微な変更（構造関係規定）"
+    }
+  },
+  "required": [
+    "submission_date",
+    "submitted_to",
+    "lead_supervisor_address",
+    "lead_supervisor_phone",
+    "lead_supervisor_company",
+    "architect_office_registration",
+    "lead_supervisor_name",
+    "lead_supervisor_license",
+    "contractor_address",
+    "contractor_phone",
+    "contractor_company",
+    "contractor_license",
+    "contractor_name",
+    "quality_contact_name",
+    "quality_contact_phone",
+    "owner_address",
+    "owner_phone",
+    "owner_company",
+    "owner_name",
+    "plan_report_accept_date",
+    "plan_report_accept_number",
+    "site_name",
+    "site_zone",
+    "building_block",
+    "construction_type",
+    "site_address",
+    "structural_designer_name",
+    "structural_designer_company",
+    "structural_designer_phone",
+    "site_manager_name",
+    "site_office",
+    "site_office_phone",
+    "above_ground_floors",
+    "below_ground_floors",
+    "penthouse_floors",
+    "building_area_m2",
+    "total_floor_area_m2",
+    "structure_type",
+    "eaves_height_m",
+    "max_height_m",
+    "confirmation_issuer",
+    "confirmation_date",
+    "confirmation_number",
+    "plan_changes",
+    "route_x",
+    "route_y",
+    "route_other",
+    "minor_changes_after_revision"
+  ]
+}

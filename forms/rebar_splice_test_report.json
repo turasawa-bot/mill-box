@@ -1,0 +1,70 @@
+{
+  "form_name": "鉄筋工事施工結果報告書（鉄筋継手の試験・検査結果報告）",
+  "source_page": 3,
+  "fields": [
+    {
+      "key": "rows",
+      "label": "結果一覧",
+      "type": "array",
+      "row_fields": [
+        "no",
+        "splice_location",
+        "method_name",
+        "splice_contractor",
+        "rebar_grade",
+        "rebar_diameter",
+        "inspection_method",
+        "inspection_agency",
+        "tokyo_registration_number",
+        "inspection_period",
+        "has_nonconformance",
+        "pass_fail"
+      ]
+    },
+    {
+      "key": "nonconformance_detail",
+      "label": "不適格箇所の詳細",
+      "type": "text"
+    },
+    {
+      "key": "splice_count_plan",
+      "label": "継手箇所数_計画",
+      "type": "number"
+    },
+    {
+      "key": "splice_count_actual",
+      "label": "継手箇所数_実施",
+      "type": "number"
+    },
+    {
+      "key": "test_count_plan",
+      "label": "試験回数_計画",
+      "type": "number"
+    },
+    {
+      "key": "test_count_actual",
+      "label": "試験回数_実施",
+      "type": "number"
+    },
+    {
+      "key": "center_test_count_plan",
+      "label": "センター試験回数_計画",
+      "type": "string"
+    },
+    {
+      "key": "center_test_count_actual",
+      "label": "センター試験回数_実施",
+      "type": "string"
+    },
+    {
+      "key": "ut_plan",
+      "label": "超音波探傷・測定検査_計画",
+      "type": "string"
+    },
+    {
+      "key": "ut_actual",
+      "label": "超音波探傷・測定検査_実施",
+      "type": "string"
+    }
+  ]
+}
