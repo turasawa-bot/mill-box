@@ -98,6 +98,109 @@ function NavIcon({ type }: { type: string }) {
   }
 }
 
+/* Client-side demo OCR: generates mock results based on filename */
+function generateDemoResult(filename: string): OcrResult {
+  const category = classifyDocument(filename);
+  switch (category) {
+    case "フレッシュ試験":
+      return {
+        documentType: "フレッシュコンクリート試験成績表",
+        confidence: 0.95,
+        fields: {
+          試験日: "2024-06-15",
+          工事名: "○○ビル新築工事",
+          打設箇所: "2F スラブ",
+          配合記号: "30-18-20N",
+          工場名: "△△生コン",
+          スランプ値: "18.0 cm",
+          空気量: "4.5 %",
+          コンクリート温度: "26.5 ℃",
+          外気温: "28.0 ℃",
+          塩化物含有量: "0.18 kg/m³",
+          単位水量推定値: "168 kg/m³",
+        },
+        rawText: "フレッシュコンクリート試験成績表\n試験日: 2024年6月15日\n工事名: ○○ビル新築工事...",
+      };
+    case "圧縮強度試験":
+      return {
+        documentType: "コンクリート圧縮強度試験成績表",
+        confidence: 0.92,
+        fields: {
+          試験日: "2024-07-13",
+          工事名: "○○ビル新築工事",
+          打設日: "2024-06-15",
+          材齢: "28日",
+          配合記号: "30-18-20N",
+          設計基準強度Fc: "30 N/mm²",
+          呼び強度: "33 N/mm²",
+          供試体1: "35.2 N/mm²",
+          供試体2: "34.8 N/mm²",
+          供試体3: "36.1 N/mm²",
+          平均強度: "35.4 N/mm²",
+          判定: "合格 (35.4 ≧ 30)",
+        },
+        rawText: "コンクリート圧縮強度試験成績表\n試験日: 2024年7月13日...",
+      };
+    case "納入伝票":
+      return {
+        documentType: "納入伝票",
+        confidence: 0.88,
+        fields: {
+          伝票番号: "N-2024-0615-001",
+          納入日: "2024-06-15",
+          工場名: "△△生コン",
+          配合記号: "30-18-20N",
+          数量: "4.5 m³",
+          出荷時刻: "08:30",
+          到着時刻: "09:05",
+          車両番号: "品川 100 あ 1234",
+        },
+        rawText: "納入伝票\n伝票番号: N-2024-0615-001...",
+      };
+    case "配合計画書":
+      return {
+        documentType: "配合計画書",
+        confidence: 0.90,
+        fields: {
+          工場名: "△△生コン",
+          配合記号: "30-18-20N",
+          呼び強度: "33 N/mm²",
+          スランプ: "18 cm",
+          粗骨材最大寸法: "20 mm",
+          セメント種類: "普通ポルトランドセメント",
+          水セメント比: "48.5 %",
+          単位水量: "170 kg/m³",
+          単位セメント量: "351 kg/m³",
+        },
+        rawText: "コンクリート配合計画書\n工場名: △△生コン...",
+      };
+    case "受入写真":
+      return {
+        documentType: "受入検査写真",
+        confidence: 0.85,
+        fields: {
+          撮影日: "2024-06-15",
+          工事名: "○○ビル新築工事",
+          打設箇所: "2F スラブ",
+          黒板記載_スランプ: "18.0 cm",
+          黒板記載_空気量: "4.5 %",
+          黒板記載_温度: "26.5 ℃",
+        },
+        rawText: "（写真から黒板テキストを読み取り）\nスランプ: 18.0 cm...",
+      };
+    default:
+      return {
+        documentType: "不明な書類",
+        confidence: 0.60,
+        fields: {
+          工事名: "○○ビル新築工事",
+          備考: "書類種別を自動判定できませんでした",
+        },
+        rawText: "(テキスト抽出結果)",
+      };
+  }
+}
+
 /* OCR Result Detail Panel */
 function OcrResultPanel({
   file,
@@ -194,26 +297,39 @@ export default function Home() {
       prev.map((f) => (f.id === fileId ? { ...f, ocrStatus: "processing" as const } : f))
     );
 
+    // Simulate processing delay for realistic UX
+    await new Promise((resolve) => setTimeout(resolve, 800 + Math.random() * 1200));
+
     try {
-      const formData = new FormData();
-      formData.append("file", file);
+      // Try server API first (works when Next.js server is running with API key)
+      let result: OcrResult | null = null;
+      let mode: "ai" | "demo" = "demo";
 
-      const res = await fetch("/api/ocr", { method: "POST", body: formData });
-      const data = await res.json();
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        const res = await fetch("/api/ocr", { method: "POST", body: formData });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.mode === "ai") {
+            result = data.result;
+            mode = "ai";
+          }
+        }
+      } catch {
+        // Server not available - use client-side demo mode
+      }
 
-      if (!res.ok) {
-        throw new Error(data.error || "OCR処理に失敗しました");
+      // Fallback: client-side demo mode (works without server)
+      if (!result) {
+        result = generateDemoResult(file.name);
+        mode = "demo";
       }
 
       setFiles((prev) =>
         prev.map((f) =>
           f.id === fileId
-            ? {
-                ...f,
-                ocrStatus: "done" as const,
-                ocrMode: data.mode,
-                ocrResult: data.result,
-              }
+            ? { ...f, ocrStatus: "done" as const, ocrMode: mode, ocrResult: result! }
             : f
         )
       );
