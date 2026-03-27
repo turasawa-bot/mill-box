@@ -14,14 +14,14 @@
         .my-table td { border-bottom: 1px solid #e2e8f0; padding: 10px 8px; font-size: 12px; vertical-align: middle; background: #ffffff; white-space: nowrap; }
         .my-table tr.hover-row:hover td { background: #f8fafc; }
         .detail-table { border-collapse: collapse; }
-        .detail-table th, .detail-table td { border: 1px solid #cbd5e1; padding: 6px 8px; font-size: 10px; text-align: center; vertical-align: middle; white-space: nowrap; }
-        .detail-table th { color: #334155; font-weight: 700; }
+        .detail-table th, .detail-table td { border: 1px solid #cbd5e1; padding: 10px 16px; font-size: 11px; text-align: center; vertical-align: middle; white-space: nowrap; }
+        .detail-table th { color: #334155; font-weight: 700; line-height: 1.3; }
         ::-webkit-scrollbar { width: 6px; height: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         .matrix-container { overflow: auto; height: 100%; flex: 1; }
-        .matrix-table { border-collapse: separate; border-spacing: 0; min-width: 1700px; table-layout: fixed; }
+        .matrix-table { border-collapse: separate; border-spacing: 0; min-width: 1900px; table-layout: fixed; }
         .matrix-table th, .matrix-table td { border-right: 1px solid #cbd5e1; border-bottom: 1px solid #cbd5e1; padding: 6px 8px; font-size: 11px; text-align: center; white-space: nowrap; background: #fff; }
         .matrix-table thead th { position: sticky; top: 0; z-index: 10; font-weight: 700; }
         .sticky-left { position: sticky; left: 0; z-index: 20; box-shadow: 2px 0 5px -2px rgba(0,0,0,0.15); border-right: 2px solid #94a3b8 !important; }
@@ -29,7 +29,7 @@
         .bg-mix { background-color: #fffbeb !important; }
         .bg-fresh { background-color: #f0f9ff !important; }
         .bg-str-p { background-color: #f0fdf4 !important; }
-        .bg-str-s { background-color: #f8fafc !important; }
+        .bg-str-s { background-color: #fdf2f8 !important; }
         .tab-btn { transition: all 0.2s; margin-bottom: -1px; }
         .tab-content { display: none; height: 100%; flex-direction: column; overflow: hidden; }
         .tab-content.active { display: flex; }
@@ -45,111 +45,111 @@
             <a href="#" class="flex items-center px-6 py-3 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors text-sm font-medium">プラント設定</a>
         </nav>
     </div>
-    <div class="mt-auto m-4 p-4 bg-slate-800 rounded-lg text-xs text-slate-400 space-y-1">
-        <p class="font-bold text-slate-300">学習済み様式:</p>
-        <p>・日東コン(普通/高強度)</p><p>・大崎技セ(3P構成)</p><p>・工場発行成績書</p>
-    </div>
 </aside>
 <main class="flex-1 flex flex-col min-w-0 bg-slate-50 relative">
     <header class="bg-white px-8 pt-5 flex justify-between items-end shrink-0 z-10 border-b border-slate-200 shadow-sm">
         <div class="flex flex-col gap-1.5 mb-3">
             <h2 class="text-xl font-bold text-slate-800">生コン</h2>
-            <p class="text-xs text-slate-500">コンクリート施工結果報告書 (様式第05号・第22号様式等) 自動生成フロー</p>
+            <p class="text-xs text-slate-500">コンクリート施工結果報告書 自動生成フロー</p>
         </div>
         <div class="flex gap-3 mb-4">
             <button onclick="openModal('upload-modal')" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded text-sm font-bold shadow-sm transition-colors flex items-center gap-1.5">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-                ファイルアップロード
-            </button>
+                ファイルアップロード</button>
             <button onclick="openPrintModal()" class="bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 px-5 py-2 rounded text-sm font-bold shadow-sm flex items-center gap-2 transition-colors">
                 <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                印刷・出力
-            </button>
+                印刷・出力</button>
         </div>
     </header>
     <div class="bg-white border-b border-slate-200 px-8 flex gap-8 shrink-0 z-10 relative">
         <button onclick="switchTab('list')" id="tab-btn-list" class="tab-btn pb-3 text-sm font-bold border-b-2 border-blue-600 text-blue-600">打設一覧</button>
         <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800">試験結果一覧</button>
         <button onclick="switchTab('docs')" id="tab-btn-docs" class="tab-btn pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-1.5">
-            アップロード一覧 <span id="doc-badge" class="bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">1</span>
-        </button>
+            アップロード一覧 <span id="doc-badge" class="bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">1</span></button>
     </div>
     <div id="tab-list" class="tab-content active p-6 gap-4">
         <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm shrink-0">
-            <div class="flex flex-wrap items-end gap-3.5">
-                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">打設日 (From-To)</label><div class="flex items-center gap-1.5"><input type="date" class="border rounded px-2 py-1.5 text-xs w-28"> - <input type="date" class="border rounded px-2 py-1.5 text-xs w-28"></div></div>
-                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">種類</label><select class="border rounded px-2 py-1.5 text-xs w-24"><option>すべて</option><option>普通</option></select></div>
-                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">工区</label><input type="text" placeholder="基礎1工区" class="border rounded px-2 py-1.5 text-xs w-28"></div>
+            <div class="flex flex-wrap items-end gap-4">
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">打設番号</label><input type="text" placeholder="例: CON-001" class="border rounded px-2 py-1.5 text-xs w-28"></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">打設日 (From-To)</label><div class="flex items-center gap-1.5"><input type="date" class="border rounded px-2 py-1.5 text-xs w-32"> - <input type="date" class="border rounded px-2 py-1.5 text-xs w-32"></div></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">種類</label><select class="border rounded px-2 py-1.5 text-xs w-20"><option>すべて</option><option>普通</option></select></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">打設箇所</label><input type="text" placeholder="基礎1" class="border rounded px-2 py-1.5 text-xs w-24"></div>
                 <div><label class="block text-[11px] font-bold text-slate-500 mb-1">節</label><input type="text" placeholder="1F" class="border rounded px-2 py-1.5 text-xs w-16"></div>
-                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">部位</label><input type="text" placeholder="柱・壁" class="border rounded px-2 py-1.5 text-xs w-28"></div>
-                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">配合No</label><input type="text" placeholder="24-18-20N" class="border rounded px-2 py-1.5 text-xs w-24"></div>
-                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">確認状況</label><select class="border rounded px-2 py-1.5 text-xs w-24"><option>すべて</option><option>要確認</option><option>確定済</option></select></div>
-                <button class="bg-slate-800 text-white px-5 py-1.5 rounded text-xs font-bold h-[30px] shadow-sm flex items-center gap-1.5 hover:bg-slate-700 transition-colors">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>絞り込み
-                </button>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">部位</label><input type="text" placeholder="柱・壁" class="border rounded px-2 py-1.5 text-xs w-24"></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">配合</label><input type="text" placeholder="24-18-20-N-24-27" class="border rounded px-2 py-1.5 text-xs w-32"></div>
+                <button class="bg-slate-800 text-white px-6 py-1.5 rounded text-xs font-bold h-[30px] shadow-sm hover:bg-slate-700 transition-colors">検索</button>
             </div>
         </div>
         <div class="bg-white border border-slate-200 rounded-lg shadow-sm flex-1 overflow-hidden flex flex-col">
             <div class="overflow-auto flex-1 custom-scrollbar">
-                <table class="w-full text-left my-table min-w-[1200px]">
+                <table class="w-full text-left my-table min-w-[1250px]">
                     <thead class="sticky top-0 bg-slate-50 z-10 shadow-sm">
                         <tr>
-                            <th class="w-10 text-center"><input type="checkbox" id="check-all-list" class="w-4 h-4 text-blue-600 rounded border-slate-300 cursor-pointer shadow-sm" onchange="toggleAllChecks(this, '.cb-list')"></th>
+                            <th class="w-10 text-center"><input type="checkbox" id="check-all-list" class="w-4 h-4 text-blue-600 rounded border-slate-300 cursor-pointer"></th>
                             <th class="w-10 text-center"></th>
-                            <th class="w-20 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>確認状況</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
-                            <th class="w-24 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>打設日</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
-                            <th class="w-16 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>種類</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
-                            <th class="px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>工区</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
-                            <th class="w-12 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>節</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
-                            <th class="px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>部位</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
-                            <th class="w-28 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>配合No</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
-                            <th class="w-24 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>数量(m³)</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="w-24">打設番号</th><th class="w-24">確認状況</th><th class="w-28">打設日</th><th class="w-20">種類</th><th>打設箇所</th><th class="w-16">節</th><th>部位</th><th class="w-40">配合</th><th class="w-24">数量(m³)</th>
                             <th class="w-12 text-center text-[10px]">計画</th><th class="w-12 text-center text-[10px]">試験</th><th class="w-12 text-center text-[10px]">伝票</th><th class="w-12 text-center text-[10px]">写真</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="hover-row cursor-pointer border-b border-slate-200" onclick="if(event.target.tagName==='INPUT' || event.target.closest('input')) return; toggleDetail('dl-1', 'btn-1')">
+                        <tr class="hover-row cursor-pointer border-b border-slate-200" onclick="if(event.target.tagName==='INPUT'||event.target.closest('input'))return;toggleDetail('dl-1','btn-1')">
                             <td class="text-center" onclick="event.stopPropagation();"><input type="checkbox" class="cb-list print-cb w-4 h-4 text-blue-600 rounded border-slate-300 cursor-pointer"></td>
-                            <td class="text-center"><button id="btn-1" class="w-5 h-5 rounded border border-slate-300 flex items-center justify-center text-slate-500 font-bold bg-white mx-auto hover:bg-slate-100 hover:text-blue-600 shadow-sm transition-colors">+</button></td>
-                            <td><span class="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-bold">確定済</span></td>
-                            <td class="font-mono">2026/03/27</td><td>普通</td><td class="font-bold">基礎1工区</td><td>1F</td><td>柱・壁</td><td class="font-mono text-[11px]">24-18-20N</td><td class="text-right pr-6 font-mono">150.0</td>
-                            <td class="text-center text-red-500 cursor-pointer">📄</td><td class="text-center text-red-500 cursor-pointer">📄</td><td class="text-center text-red-500 cursor-pointer">📄</td><td class="text-center text-red-500 cursor-pointer">📄</td>
+                            <td class="text-center"><button id="btn-1" class="w-5 h-5 rounded border border-slate-300 flex items-center justify-center text-slate-500 font-bold bg-white mx-auto shadow-sm">+</button></td>
+                            <td class="font-mono font-bold text-slate-700">CON-001</td>
+                            <td><span class="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-bold">確認済</span></td>
+                            <td class="font-mono">2026/03/27</td><td>普通</td><td class="font-bold">基礎1</td><td>1F</td><td>柱・壁</td>
+                            <td class="font-mono text-[11px] text-blue-700 font-bold tracking-tight">24-18-20-N-24-27</td>
+                            <td class="text-right pr-4 font-mono">150.0</td>
+                            <td class="text-center text-red-500">📄</td><td class="text-center text-red-500">📄</td><td class="text-center text-red-500">📄</td><td class="text-center text-red-500">📄</td>
                         </tr>
                         <tr id="dl-1" class="hidden bg-slate-100/50 shadow-inner">
-                            <td colspan="14" class="p-4">
-                                <div class="w-full overflow-x-auto pb-2 custom-scrollbar">
-                                    <table class="detail-table bg-white min-w-[1200px] shadow-sm rounded">
+                            <td colspan="15" class="p-6">
+                                <div class="w-full overflow-x-auto custom-scrollbar pb-3">
+                                    <table class="detail-table bg-white shadow-sm border border-slate-300 min-w-[1400px]">
                                         <thead>
                                             <tr>
-                                                <th colspan="6" class="bg-mix">配合</th>
-                                                <th colspan="8" class="bg-fresh">フレッシュコンクリート 受入検査</th>
-                                                <th colspan="4" class="bg-str-p">圧縮強度 (調合管理:28d)</th>
+                                                <th colspan="8" class="bg-fresh border-b-2 border-blue-200 text-[12px] py-2">フレッシュコンクリートの受入検査</th>
+                                                <th colspan="6" class="bg-str-p border-b-2 border-emerald-200 text-[12px] py-2">圧縮強度 (調合管理) 材齢:28日</th>
+                                                <th colspan="7" class="bg-str-s border-b-2 border-pink-200 text-[12px] py-2">圧縮強度 (構造体) 材齢:28日</th>
                                             </tr>
                                             <tr>
-                                                <th class="bg-mix">呼び</th><th class="bg-mix">スランプ</th><th class="bg-mix">骨材</th><th class="bg-mix">セメント</th><th class="bg-mix">Fc</th><th class="bg-mix">Fq</th>
-                                                <th class="bg-fresh">スランプ</th><th class="bg-fresh">空気量</th><th class="bg-fresh">温度</th><th class="bg-fresh">塩化物</th><th class="bg-fresh">単位容積</th><th class="bg-fresh">フロー</th><th class="bg-fresh">外気温</th><th class="bg-fresh">判定</th>
-                                                <th class="bg-str-p">試験日</th><th class="bg-str-p">圧縮強度</th><th class="bg-str-p">平均</th><th class="bg-str-p">判定</th>
+                                                <th class="bg-fresh">ｽﾗﾝﾌﾟ</th><th class="bg-fresh">空気量</th><th class="bg-fresh">温度</th><th class="bg-fresh">塩化物</th><th class="bg-fresh">単容積</th><th class="bg-fresh">フロー</th><th class="bg-fresh">外気温</th><th class="bg-fresh text-blue-700">合否</th>
+                                                <th class="bg-str-p">試験日</th><th class="bg-str-p">1本目</th><th class="bg-str-p">2本目</th><th class="bg-str-p">3本目</th><th class="bg-str-p font-bold text-[12px]">平均値</th><th class="bg-str-p text-emerald-700">合否</th>
+                                                <th class="bg-str-s">試験日</th><th class="bg-str-s">養生</th><th class="bg-str-s">1本目</th><th class="bg-str-s">2本目</th><th class="bg-str-s">3本目</th><th class="bg-str-s font-bold text-[12px]">平均値</th><th class="bg-str-s text-pink-700">合否</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td rowspan="3">24</td><td rowspan="3">18</td><td rowspan="3">20</td><td rowspan="3">N</td><td rowspan="3">24</td><td rowspan="3">27</td>
-                                                <td class="text-blue-600 font-bold">19.5</td><td class="text-blue-600 font-bold">4.9</td><td>28</td><td>0.01</td><td>2300</td><td>34.0x33.0</td><td>27</td><td><span class="text-emerald-500 bg-emerald-50 px-1 rounded font-bold">合</span></td>
-                                                <td rowspan="3">2026/04/24</td><td>28.5</td><td rowspan="3" class="font-bold bg-slate-50 text-base">29.1</td><td rowspan="3"><span class="text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold">合</span></td>
+                                            <tr class="border-b border-slate-200">
+                                                <td class="font-bold text-blue-600 italic">19.5</td><td class="font-bold text-blue-600">4.9</td><td>28</td><td>0.01</td><td>2300</td><td>34x33</td><td>27</td><td><span class="text-[10px] bg-emerald-500 text-white px-2 py-0.5 rounded shadow-sm">合</span></td>
+                                                <td rowspan="3" class="bg-slate-50 font-mono">04/24</td><td class="text-right">28.5</td><td class="text-right">29.2</td><td class="text-right">29.7</td><td rowspan="3" class="bg-emerald-50 font-bold text-[14px] text-emerald-800 border-x border-emerald-100">29.1</td><td rowspan="3"><span class="bg-emerald-500 text-white px-2 py-1 rounded shadow-sm">合</span></td>
+                                                <td rowspan="3" class="bg-slate-50 font-mono">04/24</td><td rowspan="3">現場</td><td class="text-right">28.2</td><td class="text-right">29.0</td><td class="text-right">29.5</td><td rowspan="3" class="bg-pink-50 font-bold text-[14px] text-pink-800 border-x border-pink-100">28.9</td><td rowspan="3"><span class="bg-emerald-500 text-white px-2 py-1 rounded shadow-sm">合</span></td>
+                                            </tr>
+                                            <tr class="border-b border-slate-200">
+                                                <td class="font-bold text-blue-600 italic">19.0</td><td class="font-bold text-blue-600">4.5</td><td>28</td><td>0.01</td><td>2310</td><td>32x32</td><td>27</td><td><span class="text-[10px] bg-emerald-500 text-white px-2 py-0.5 rounded shadow-sm">合</span></td>
+                                                <td colspan="3" class="bg-slate-50/50 text-[10px] text-slate-400 italic text-center">No.2 測定データ省略</td>
+                                                <td colspan="3" class="bg-slate-50/50 text-[10px] text-slate-400 italic text-center">No.2 測定データ省略</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-blue-600 font-bold">19.0</td><td class="text-blue-600 font-bold">4.5</td><td>28</td><td>0.01</td><td>2310</td><td>32.5x32.0</td><td>27</td><td><span class="text-emerald-600 bg-emerald-50 px-1 rounded font-bold">合</span></td>
-                                                <td>29.2</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-blue-600 font-bold">20.0</td><td class="text-blue-600 font-bold">4.8</td><td>27</td><td>0.01</td><td>2305</td><td>36.0x32.0</td><td>26</td><td><span class="text-emerald-600 bg-emerald-50 px-1 rounded font-bold">合</span></td>
-                                                <td>29.7</td>
+                                                <td class="font-bold text-blue-600 italic">20.0</td><td class="font-bold text-blue-600">4.8</td><td>27</td><td>0.01</td><td>2305</td><td>36x32</td><td>26</td><td><span class="text-[10px] bg-emerald-500 text-white px-2 py-0.5 rounded shadow-sm">合</span></td>
+                                                <td colspan="3" class="bg-slate-50/50 text-[10px] text-slate-400 italic text-center">No.3 測定データ省略</td>
+                                                <td colspan="3" class="bg-slate-50/50 text-[10px] text-slate-400 italic text-center">No.3 測定データ省略</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </td>
                         </tr>
+                        <tr class="hover-row cursor-pointer border-b border-slate-200" onclick="if(event.target.tagName==='INPUT'||event.target.closest('input'))return;toggleDetail('dl-2','btn-2')">
+                            <td class="text-center" onclick="event.stopPropagation();"><input type="checkbox" class="cb-list print-cb w-4 h-4 text-blue-600 rounded border-slate-300 cursor-pointer"></td>
+                            <td class="text-center"><button id="btn-2" class="w-5 h-5 rounded border border-slate-300 flex items-center justify-center text-slate-500 font-bold bg-white mx-auto shadow-sm">+</button></td>
+                            <td class="font-mono font-bold text-slate-700">CON-002</td>
+                            <td><span class="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-bold">確認済</span></td>
+                            <td class="font-mono">2026/03/28</td><td>高強度</td><td class="font-bold">基礎2</td><td>1F</td><td>スラブ</td>
+                            <td class="font-mono text-[11px] text-blue-700 font-bold tracking-tight">30-18-20-H-30-33</td>
+                            <td class="text-right pr-4 font-mono">210.5</td>
+                            <td class="text-center text-red-500">📄</td><td class="text-center text-red-500">📄</td><td class="text-center text-red-500">📄</td><td class="text-center text-slate-300">-</td>
+                        </tr>
+                        <tr id="dl-2" class="hidden bg-slate-100/50 shadow-inner"><td colspan="15" class="p-6 text-center text-slate-500 text-xs">試験データ（省略）</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -157,16 +157,15 @@
     </div>
     <div id="tab-matrix" class="tab-content p-6 gap-4">
         <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm shrink-0">
-            <div class="flex flex-wrap items-end gap-3.5">
-                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">打設日 (From-To)</label><div class="flex items-center gap-1.5"><input type="date" class="border rounded px-2 py-1.5 text-xs w-28"> - <input type="date" class="border rounded px-2 py-1.5 text-xs w-28"></div></div>
-                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">種類</label><select class="border rounded px-2 py-1.5 text-xs w-24"><option>すべて</option><option>普通</option></select></div>
-                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">工区</label><input type="text" placeholder="基礎1工区" class="border rounded px-2 py-1.5 text-xs w-28"></div>
+            <div class="flex flex-wrap items-end gap-4">
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">打設番号</label><input type="text" placeholder="例: CON-001" class="border rounded px-2 py-1.5 text-xs w-28"></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">打設日 (From-To)</label><div class="flex items-center gap-1.5"><input type="date" class="border rounded px-2 py-1.5 text-xs w-32"> - <input type="date" class="border rounded px-2 py-1.5 text-xs w-32"></div></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">種類</label><select class="border rounded px-2 py-1.5 text-xs w-20"><option>すべて</option><option>普通</option></select></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">打設箇所</label><input type="text" placeholder="基礎1" class="border rounded px-2 py-1.5 text-xs w-24"></div>
                 <div><label class="block text-[11px] font-bold text-slate-500 mb-1">節</label><input type="text" placeholder="1F" class="border rounded px-2 py-1.5 text-xs w-16"></div>
-                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">部位</label><input type="text" placeholder="柱・壁" class="border rounded px-2 py-1.5 text-xs w-28"></div>
-                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">配合No</label><input type="text" placeholder="24-18-20N" class="border rounded px-2 py-1.5 text-xs w-24"></div>
-                <button class="bg-slate-800 text-white px-5 py-1.5 rounded text-xs font-bold h-[30px] shadow-sm flex items-center gap-1.5 hover:bg-slate-700 transition-colors">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>絞り込み
-                </button>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">部位</label><input type="text" placeholder="柱・壁" class="border rounded px-2 py-1.5 text-xs w-24"></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">配合</label><input type="text" placeholder="24-18-20-N-24-27" class="border rounded px-2 py-1.5 text-xs w-32"></div>
+                <button class="bg-slate-800 text-white px-6 py-1.5 rounded text-xs font-bold h-[30px] shadow-sm hover:bg-slate-700 transition-colors">検索</button>
             </div>
         </div>
         <div class="bg-white border border-slate-200 rounded-lg shadow-sm flex-1 overflow-hidden">
@@ -180,17 +179,17 @@
                             <th colspan="5" class="bg-str-s">圧縮強度 (構造体) 28日</th>
                         </tr>
                         <tr>
-                            <th class="sticky-left p-0 border-b-0 align-bottom bg-slate-100 min-w-[400px] w-[400px]">
-                                <div class="grid grid-cols-[60px_40px_100px_50px_90px_60px] text-[11px] text-center divide-x divide-slate-300 h-full w-full">
+                            <th class="sticky-left p-0 border-b-0 align-bottom bg-slate-100 min-w-[460px] w-[460px]">
+                                <div class="grid grid-cols-[60px_40px_90px_50px_100px_120px] text-[11px] text-center divide-x divide-slate-300 h-full w-full">
                                     <div class="p-2 flex items-center justify-center">打設日</div>
                                     <div class="p-2 flex items-center justify-center">種類</div>
-                                    <div class="p-2 flex flex-col items-center justify-center gap-1"><span>工区</span><span class="text-[9px] text-slate-400">節 / 部位</span></div>
+                                    <div class="p-2 flex flex-col items-center justify-center gap-1"><span>打設箇所</span><span class="text-[9px] text-slate-400">節 / 部位</span></div>
                                     <div class="p-2 flex items-center justify-center">数量</div>
                                     <div class="p-2 flex items-center justify-center">プラント名</div>
                                     <div class="p-1 flex flex-col justify-center gap-1 border-l border-slate-300 bg-white">
-                                        <div class="grid grid-cols-2 divide-x divide-slate-300 text-[10px] border-b border-slate-300 pb-0.5"><div>呼</div><div>ｽﾗ</div></div>
-                                        <div class="grid grid-cols-2 divide-x divide-slate-300 text-[10px] border-b border-slate-300 pb-0.5"><div>骨</div><div>ｾﾒ</div></div>
-                                        <div class="grid grid-cols-2 divide-x divide-slate-300 text-[10px]"><div>Fc</div><div>Fq</div></div>
+                                        <div class="grid grid-cols-2 divide-x divide-slate-300 text-[10px] border-b border-slate-300 pb-0.5"><div>呼</div><div>ｾﾒ</div></div>
+                                        <div class="grid grid-cols-2 divide-x divide-slate-300 text-[10px] border-b border-slate-300 pb-0.5"><div>ｽﾗ</div><div>Fc</div></div>
+                                        <div class="grid grid-cols-2 divide-x divide-slate-300 text-[10px]"><div>骨</div><div>Fq</div></div>
                                     </div>
                                 </div>
                             </th>
@@ -201,33 +200,30 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td rowspan="3" class="sticky-left p-0 bg-white border-b border-slate-300 min-w-[400px] w-[400px]">
-                                <div class="grid grid-cols-[60px_40px_100px_50px_90px_60px] text-[11px] text-center divide-x divide-slate-200 h-full w-full">
+                            <td rowspan="3" class="sticky-left p-0 bg-white border-b border-slate-300 min-w-[460px] w-[460px]">
+                                <div class="grid grid-cols-[60px_40px_90px_50px_100px_120px] text-[11px] text-center divide-x divide-slate-200 h-full w-full">
                                     <div class="flex items-center justify-center font-mono">03/27</div>
                                     <div class="flex items-center justify-center text-[10px]">普通</div>
-                                    <div class="flex flex-col justify-center text-left p-2 gap-1">
-                                        <div class="font-bold truncate" title="基礎1工区">基礎1工区</div>
-                                        <div class="text-[10px] text-slate-500 truncate" title="1F - 柱・壁">1F - 柱・壁</div>
-                                    </div>
+                                    <div class="flex flex-col justify-center text-left p-2 gap-1"><div class="font-bold truncate">基礎1</div><div class="text-[10px] text-slate-500 truncate">1F - 柱・壁</div></div>
                                     <div class="flex items-center justify-center font-mono">150.0</div>
-                                    <div class="flex items-center justify-center text-[10px] truncate px-1" title="日東コン工業 日高プラント">日東コン</div>
+                                    <div class="flex items-center justify-center text-[10px] truncate px-1">日東コン</div>
                                     <div class="flex flex-col justify-center p-1 gap-1 border-l border-slate-200">
-                                        <div class="grid grid-cols-2 divide-x divide-slate-200 border-b border-slate-200 pb-0.5"><div class="font-bold">24</div><div class="font-bold">18</div></div>
-                                        <div class="grid grid-cols-2 divide-x divide-slate-200 border-b border-slate-200 pb-0.5"><div class="font-bold">20</div><div class="font-bold">N</div></div>
-                                        <div class="grid grid-cols-2 divide-x divide-slate-200"><div class="font-bold">24</div><div class="font-bold">27</div></div>
+                                        <div class="grid grid-cols-2 divide-x divide-slate-200 border-b border-slate-200 pb-0.5"><div class="font-bold text-slate-700">24</div><div class="font-bold text-slate-700">N</div></div>
+                                        <div class="grid grid-cols-2 divide-x divide-slate-200 border-b border-slate-200 pb-0.5"><div class="font-bold text-slate-700">18</div><div class="font-bold text-slate-700">24</div></div>
+                                        <div class="grid grid-cols-2 divide-x divide-slate-200"><div class="font-bold text-slate-700">20</div><div class="font-bold text-slate-700">27</div></div>
                                     </div>
                                 </div>
                             </td>
-                            <td>19.5</td><td>4.9</td><td>28</td><td>0.01</td><td>2300</td><td>34.0x33.0</td><td>27</td><td><span class="text-emerald-600 bg-emerald-50 px-1 rounded">合</span></td>
-                            <td rowspan="3" class="border-b border-slate-300">26/04/24</td><td class="border-b border-slate-200">28.5</td><td rowspan="3" class="bg-slate-50 font-bold text-sm border-b border-slate-300">29.1</td><td rowspan="3" class="border-b border-slate-300"><span class="text-emerald-600 bg-emerald-50 px-1 rounded">合</span></td>
-                            <td rowspan="3" class="border-b border-slate-300">26/04/24</td><td rowspan="3" class="border-b border-slate-300">標準</td><td class="border-b border-slate-200">28.2</td><td rowspan="3" class="bg-slate-50 font-bold text-sm border-b border-slate-300">28.9</td><td rowspan="3" class="border-b border-slate-300"><span class="text-emerald-600 bg-emerald-50 px-1 rounded">合</span></td>
+                            <td>19.5</td><td>4.9</td><td>28</td><td>0.01</td><td>2300</td><td>34.0x33.0</td><td>27</td><td><span class="text-[9px] bg-emerald-500 text-white px-1.5 py-0.5 rounded font-bold">合</span></td>
+                            <td rowspan="3" class="border-b border-slate-300">26/04/24</td><td class="border-b border-slate-200">28.5</td><td rowspan="3" class="bg-emerald-50 text-emerald-800 font-bold text-sm border-b border-slate-300">29.1</td><td rowspan="3" class="border-b border-slate-300"><span class="bg-emerald-500 text-white px-2 py-1 rounded font-bold">合</span></td>
+                            <td rowspan="3" class="border-b border-slate-300">26/04/24</td><td rowspan="3" class="border-b border-slate-300">標準</td><td class="border-b border-slate-200">28.2</td><td rowspan="3" class="bg-pink-50 text-pink-800 font-bold text-sm border-b border-slate-300">28.9</td><td rowspan="3" class="border-b border-slate-300"><span class="bg-emerald-500 text-white px-2 py-1 rounded font-bold">合</span></td>
                         </tr>
                         <tr>
-                            <td class="border-b border-slate-200">19.0</td><td class="border-b border-slate-200">4.5</td><td class="border-b border-slate-200">28</td><td class="border-b border-slate-200">0.01</td><td class="border-b border-slate-200">2310</td><td class="border-b border-slate-200">32.5x32.0</td><td class="border-b border-slate-200">27</td><td class="border-b border-slate-200"><span class="text-emerald-600 bg-emerald-50 px-1 rounded">合</span></td>
+                            <td class="border-b border-slate-200">19.0</td><td class="border-b border-slate-200">4.5</td><td class="border-b border-slate-200">28</td><td class="border-b border-slate-200">0.01</td><td class="border-b border-slate-200">2310</td><td class="border-b border-slate-200">32.5x32.0</td><td class="border-b border-slate-200">27</td><td class="border-b border-slate-200"><span class="text-[9px] bg-emerald-500 text-white px-1.5 py-0.5 rounded font-bold">合</span></td>
                             <td class="border-b border-slate-200">29.2</td><td class="border-b border-slate-200">29.0</td>
                         </tr>
                         <tr>
-                            <td class="border-b border-slate-300">20.0</td><td class="border-b border-slate-300">4.8</td><td class="border-b border-slate-300">27</td><td class="border-b border-slate-300">0.01</td><td class="border-b border-slate-300">2305</td><td class="border-b border-slate-300">36.0x32.0</td><td class="border-b border-slate-300">26</td><td class="border-b border-slate-300"><span class="text-emerald-600 bg-emerald-50 px-1 rounded">合</span></td>
+                            <td class="border-b border-slate-300">20.0</td><td class="border-b border-slate-300">4.8</td><td class="border-b border-slate-300">27</td><td class="border-b border-slate-300">0.01</td><td class="border-b border-slate-300">2305</td><td class="border-b border-slate-300">36.0x32.0</td><td class="border-b border-slate-300">26</td><td class="border-b border-slate-300"><span class="text-[9px] bg-emerald-500 text-white px-1.5 py-0.5 rounded font-bold">合</span></td>
                             <td class="border-b border-slate-300">29.7</td><td class="border-b border-slate-300">29.5</td>
                         </tr>
                     </tbody>
@@ -237,8 +233,8 @@
     </div>
     <div id="tab-docs" class="tab-content p-6 gap-4">
         <div class="bg-white border border-slate-200 rounded-lg p-3 shadow-sm shrink-0 flex gap-4 items-end">
-            <div><label class="block text-[10px] font-bold text-slate-500 mb-1">ステータス</label><select class="border rounded px-2 py-1 text-xs"><option>すべて</option><option>要確認</option><option>確定済</option></select></div>
-            <div><label class="block text-[10px] font-bold text-slate-500 mb-1">帳票種別</label><select class="border rounded px-2 py-1 text-xs"><option>すべて</option><option>試験レポート</option><option>納入伝票</option></select></div>
+            <div><label class="block text-[10px] font-bold text-slate-500 mb-1">ステータス</label><select class="border rounded px-2 py-1 text-xs"><option>すべて</option><option>OCR完了</option><option>OCR失敗</option><option>レビュー済</option><option>確認済</option></select></div>
+            <div><label class="block text-[10px] font-bold text-slate-500 mb-1">帳票種別</label><select class="border rounded px-2 py-1 text-xs"><option>すべて</option><option>配合計画書</option><option>打設報告書</option><option>フレッシュコンクリート試験結果</option><option>塩化物量測定結果</option><option>単位水量測定結果</option><option>圧縮強度試験報告書</option><option>納入伝票</option><option>受入写真</option></select></div>
             <button class="bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 px-4 py-1 rounded text-xs font-bold transition-colors">クリア</button>
         </div>
         <div class="bg-white border border-slate-200 rounded-lg shadow-sm flex-1 overflow-hidden flex flex-col">
@@ -246,12 +242,11 @@
                 <table class="w-full text-left my-table min-w-[1200px]">
                     <thead class="sticky top-0 bg-slate-50 z-10 shadow-sm">
                         <tr>
-                            <th class="w-16 text-center">プレビュー</th>
-                            <th>PDFファイル名</th>
+                            <th class="w-16 text-center">プレビュー</th><th>PDFファイル名</th>
                             <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>ステータス</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
                             <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>帳票種別</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
                             <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>打設日</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
-                            <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>工区</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>打設箇所</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
                             <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>節</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
                             <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>部位</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
                             <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>UP日時</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
@@ -262,14 +257,12 @@
                         <tr id="verify-row-1" class="bg-amber-50/20 hover:bg-amber-50/40">
                             <td class="text-center"><div class="w-8 h-10 border border-slate-300 bg-white mx-auto shadow-sm text-[8px] flex items-center justify-center text-slate-300">PDF</div></td>
                             <td class="text-[11px] text-blue-600 underline cursor-pointer max-w-[150px] truncate">1CON圧縮強度試験_基礎.pdf</td>
-                            <td><span class="text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-bold animate-pulse border border-amber-200">OCR完了</span></td>
-                            <td>試験レポート</td><td class="font-mono">2026/03/28</td>
-                            <td class="text-[11px] font-bold">基礎1工区</td><td class="text-[11px]">1F</td><td class="text-[11px]">柱・壁</td>
-                            <td class="text-[10px] text-slate-500 font-mono">03/27 15:26</td><td class="text-xs">井上 哲</td><td class="text-center">-</td><td class="text-center">-</td>
-                            <td class="text-center">
-                                <button onclick="openModal('check-modal')" class="bg-white border border-slate-800 hover:bg-slate-800 hover:text-white px-3 py-1.5 rounded text-[10px] font-bold shadow-sm flex items-center gap-1 mx-auto transition-colors">
-                                    👁 詳細・確定
-                                </button>
+                            <td id="status-cell-1"><span class="text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-bold border border-amber-200">OCR完了</span></td>
+                            <td>圧縮強度試験報告書</td><td class="font-mono">2026/03/28</td>
+                            <td class="text-[11px] font-bold">基礎1</td><td class="text-[11px]">1F</td><td class="text-[11px]">柱・壁</td>
+                            <td class="text-[10px] text-slate-500 font-mono">03/27 15:26</td><td class="text-xs">井上 哲</td><td id="date-cell-1" class="text-center">-</td><td id="user-cell-1" class="text-center">-</td>
+                            <td class="text-center" id="action-cell-1">
+                                <button onclick="openModal('check-modal')" class="bg-white border border-slate-800 hover:bg-slate-800 hover:text-white px-3 py-1.5 rounded text-[10px] font-bold shadow-sm flex items-center gap-1 mx-auto transition-colors">👁 詳細・確定</button>
                             </td>
                         </tr>
                     </tbody>
@@ -280,92 +273,41 @@
 </main>
 <div id="upload-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-2xl w-full max-w-md flex flex-col overflow-hidden">
-        <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
-            <h3 class="font-bold text-slate-800">試験結果・書類アップロード</h3>
-            <button onclick="closeModal('upload-modal')" class="text-slate-400 hover:text-slate-600">✕</button>
-        </div>
+        <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50"><h3 class="font-bold text-slate-800">試験結果・書類アップロード</h3><button onclick="closeModal('upload-modal')" class="text-slate-400 hover:text-slate-600">✕</button></div>
         <div class="p-8">
-            <div id="up-step-1" class="border-2 border-dashed border-blue-300 bg-blue-50/50 rounded-xl p-10 text-center cursor-pointer hover:bg-blue-50" onclick="startUpload()">
-                <div class="text-blue-500 text-4xl mb-3">📄</div>
-                <p class="font-bold text-blue-800 mb-1">クリックしてファイルを選択</p>
-            </div>
-            <div id="up-step-2" class="hidden py-6 text-center">
-                <p class="text-xs font-bold text-slate-500 mb-3" id="up-status">AI-OCR 解析中...</p>
-                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                    <div id="up-bar" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
-                </div>
-            </div>
-            <div id="up-step-3" class="hidden py-6 text-center">
-                <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto mb-3">✓</div>
-                <p class="font-bold text-slate-800 mb-4">アップロード・解析が完了しました。</p>
-                <button onclick="closeModal('upload-modal'); switchTab('docs');" class="bg-blue-600 text-white px-6 py-2 rounded text-sm font-bold w-full hover:bg-blue-700">アップロード一覧で確認する</button>
-            </div>
+            <div id="up-step-1" class="border-2 border-dashed border-blue-300 bg-blue-50/50 rounded-xl p-10 text-center cursor-pointer hover:bg-blue-50" onclick="startUpload()"><div class="text-blue-500 text-4xl mb-3">📄</div><p class="font-bold text-blue-800 mb-1">クリックしてファイルを選択</p></div>
+            <div id="up-step-2" class="hidden py-6 text-center"><p class="text-xs font-bold text-slate-500 mb-3" id="up-status">AI-OCR 解析中...</p><div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden"><div id="up-bar" class="bg-blue-600 h-full w-0 transition-all duration-300"></div></div></div>
+            <div id="up-step-3" class="hidden py-6 text-center"><div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto mb-3">✓</div><p class="font-bold text-slate-800 mb-4">アップロード・解析が完了しました。</p><button onclick="closeModal('upload-modal');switchTab('docs');" class="bg-blue-600 text-white px-6 py-2 rounded text-sm font-bold w-full hover:bg-blue-700">アップロード一覧で確認する</button></div>
         </div>
     </div>
 </div>
 <div id="print-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-2xl w-full max-w-md flex flex-col overflow-hidden">
-        <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
-            <h3 class="font-bold text-slate-800">帳票出力・印刷</h3>
-            <button onclick="closeModal('print-modal')" class="text-slate-400 hover:text-slate-600">✕</button>
-        </div>
+        <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50"><h3 class="font-bold text-slate-800">帳票出力・印刷</h3><button onclick="closeModal('print-modal')" class="text-slate-400 hover:text-slate-600">✕</button></div>
         <div class="p-6 space-y-5">
-            <div>
-                <h4 class="text-sm font-bold text-slate-700 mb-2 border-b pb-1">出力対象データ</h4>
-                <p class="text-xs text-blue-800 font-bold mb-1 bg-blue-50 border border-blue-200 p-2.5 rounded shadow-sm">
-                    ✓ 打設一覧にて選択された <span id="print-count-display" class="text-lg mx-1 text-blue-600">0</span> 件のデータを出力します
-                </p>
-            </div>
-            <div>
-                <h4 class="text-sm font-bold text-slate-700 mb-3 border-b pb-1">メイン帳票</h4>
-                <div class="space-y-2">
-                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">コンクリート検査結果一覧表</span></label>
-                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">打設結果報告書 (様式第05号 等)</span></label>
-                </div>
-            </div>
-            <div>
-                <h4 class="text-sm font-bold text-slate-700 mb-3 border-b pb-1">添付書類 (PDF結合)</h4>
-                <div class="space-y-2">
-                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">配合計画書</span></label>
-                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">打設計画書</span></label>
-                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">試験レポート (原本)</span></label>
-                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">納入伝票</span></label>
-                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">受入写真</span></label>
-                </div>
-            </div>
+            <div><h4 class="text-sm font-bold text-slate-700 mb-2 border-b pb-1">出力対象データ</h4><p class="text-xs text-blue-800 font-bold mb-1 bg-blue-50 border border-blue-200 p-2.5 rounded shadow-sm">✓ 打設一覧にて選択された <span id="print-count-display" class="text-lg mx-1 text-blue-600">0</span> 件のデータを出力します</p></div>
+            <div><h4 class="text-sm font-bold text-slate-700 mb-3 border-b pb-1">メイン帳票</h4><div class="space-y-2"><label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">コンクリート検査結果一覧表</span></label><label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">建築工事施工結果報告書 (第22号様式の3 等)</span></label></div></div>
+            <div><h4 class="text-sm font-bold text-slate-700 mb-3 border-b pb-1">添付書類 (PDF結合)</h4><div class="grid grid-cols-2 gap-y-2 gap-x-4"><label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">配合計画書</span></label><label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">打設報告書</span></label><label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">フレッシュコンクリート試験結果</span></label><label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">塩化物量測定結果</span></label><label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">単位水量測定結果</span></label><label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">圧縮強度試験報告書</span></label><label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">納入伝票</span></label><label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">受入写真</span></label></div></div>
         </div>
-        <div class="px-6 py-4 border-t border-slate-200 flex justify-end gap-3 bg-slate-50">
-            <button onclick="closeModal('print-modal')" class="px-4 py-2 border border-slate-300 text-slate-600 rounded text-sm font-bold hover:bg-slate-100">キャンセル</button>
-            <button onclick="alert('出力処理を開始します'); closeModal('print-modal');" class="px-6 py-2 bg-slate-800 text-white rounded text-sm font-bold hover:bg-slate-700 transition-colors flex items-center gap-2">PDF一括出力</button>
-        </div>
+        <div class="px-6 py-4 border-t border-slate-200 flex justify-end gap-3 bg-slate-50"><button onclick="closeModal('print-modal')" class="px-4 py-2 border border-slate-300 text-slate-600 rounded text-sm font-bold hover:bg-slate-100">キャンセル</button><button onclick="downloadSamplePDF()" class="px-6 py-2 bg-slate-800 text-white rounded text-sm font-bold hover:bg-slate-700 transition-colors flex items-center gap-2">PDF一括出力</button></div>
     </div>
 </div>
 <div id="check-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-2xl w-full max-w-6xl flex flex-col overflow-hidden max-h-[95vh]">
-        <div class="px-6 py-3 border-b border-slate-200 flex justify-between items-center bg-slate-800 text-white">
-            <h3 class="font-bold text-sm">詳細確認・確定: 1CON圧縮強度試験_基礎.pdf</h3>
-            <button onclick="closeModal('check-modal')" class="text-slate-400 hover:text-white">✕</button>
-        </div>
+        <div class="px-6 py-3 border-b border-slate-200 flex justify-between items-center bg-slate-800 text-white"><h3 class="font-bold text-sm">詳細確認・確定: 1CON圧縮強度試験_基礎.pdf</h3><button onclick="closeModal('check-modal')" class="text-slate-400 hover:text-white">✕</button></div>
         <div class="flex-1 overflow-hidden flex">
-            <div class="w-1/2 bg-slate-200 border-r border-slate-300 flex items-center justify-center p-4">
-                <div class="w-full h-full bg-white shadow-sm flex items-center justify-center text-slate-400 border border-slate-300 flex-col gap-2">
-                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    PDFプレビュー表示領域
-                </div>
-            </div>
+            <div class="w-1/2 bg-slate-200 border-r border-slate-300 flex items-center justify-center p-4"><div class="w-full h-full bg-white shadow-sm flex items-center justify-center text-slate-400 border border-slate-300 flex-col gap-2"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>PDFプレビュー表示領域</div></div>
             <div class="w-1/2 p-6 overflow-y-auto bg-slate-50 custom-scrollbar">
-                <div class="bg-amber-50 border border-amber-200 p-3 rounded text-xs text-amber-800 mb-6 font-bold flex items-start gap-2">
-                    <span class="text-base">⚠️</span>
-                    <p>原本PDF（左側）と見比べ、AI抽出結果に誤りがないか修正・確定してください。<br><strong class="font-bold text-red-600">オレンジ枠の項目はAIが推測しており要注意です。</strong></p>
-                </div>
+                <div class="bg-amber-50 border border-amber-200 p-3 rounded text-xs text-amber-800 mb-6 font-bold flex items-start gap-2"><span class="text-base">⚠️</span><p>原本PDF（左側）と見比べ、AI抽出結果に誤りがないか修正・確定してください。<br><strong class="font-bold text-red-600">オレンジ枠の項目はAIが推測しており要注意です。</strong></p></div>
                 <h4 class="text-xs font-bold text-slate-600 border-b pb-1 mb-3">基本情報</h4>
                 <div class="grid grid-cols-3 gap-x-3 gap-y-3 mb-6">
-                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">帳票種別</label><select class="w-full border p-1.5 rounded text-xs bg-white"><option>試験レポート</option><option>納入伝票</option></select></div>
-                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">打設日</label><input type="date" value="2026-03-28" class="w-full border p-1.5 rounded text-xs bg-white border-amber-400 focus:bg-amber-50"></div>
-                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">プラント名</label><input type="text" value="日東コン(株)" class="w-full border p-1.5 rounded text-xs bg-white"></div>
-                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">工区</label><input type="text" value="基礎1工区" class="w-full border p-1.5 rounded text-xs bg-white border-amber-400"></div>
-                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">節</label><input type="text" value="1F" class="w-full border p-1.5 rounded text-xs bg-white"></div>
-                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">部位</label><input type="text" value="柱・壁" class="w-full border p-1.5 rounded text-xs bg-white"></div>
+                    <div class="col-span-3 sm:col-span-1"><label class="block text-[10px] font-bold text-slate-500 mb-0.5">帳票種別 (複数選択可)</label><select multiple class="w-full border p-1.5 rounded text-xs bg-white custom-scrollbar h-20 focus:outline-none focus:border-blue-400"><option>配合計画書</option><option>打設報告書</option><option>フレッシュコンクリート試験結果</option><option>塩化物量測定結果</option><option>単位水量測定結果</option><option selected>圧縮強度試験報告書</option><option>納入伝票</option><option>受入写真</option></select><p class="text-[9px] text-slate-400 mt-1 leading-tight">※Ctrl (Cmd) キーで複数選択</p></div>
+                    <div class="col-span-3 sm:col-span-2 grid grid-cols-2 gap-3">
+                        <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">打設日</label><input type="date" value="2026-03-28" class="w-full border p-1.5 rounded text-xs bg-white border-amber-400 focus:bg-amber-50"></div>
+                        <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">プラント名</label><input type="text" value="日東コン(株)" class="w-full border p-1.5 rounded text-xs bg-white"></div>
+                        <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">打設箇所</label><input type="text" value="基礎1" class="w-full border p-1.5 rounded text-xs bg-white border-amber-400"></div>
+                        <div><div class="grid grid-cols-2 gap-2"><div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">節</label><input type="text" value="1F" class="w-full border p-1.5 rounded text-xs bg-white"></div><div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">部位</label><input type="text" value="柱・壁" class="w-full border p-1.5 rounded text-xs bg-white"></div></div></div>
+                    </div>
                 </div>
                 <h4 class="text-xs font-bold text-slate-600 border-b pb-1 mb-3">配合計画</h4>
                 <div class="grid grid-cols-6 gap-x-2 gap-y-3 mb-6">
@@ -389,10 +331,11 @@
                         <div><label class="block text-[10px] text-slate-500">圧縮 (3本目)</label><input type="text" value="29.7" class="w-full border p-1 rounded text-xs text-right border-amber-400"></div>
                     </div>
                     <div class="col-span-2 mt-2"><label class="block text-[10px] text-slate-500 font-bold">圧縮強度 (平均値) [N/mm²]</label><input type="text" value="29.1" class="w-full border border-blue-300 p-2 rounded text-base font-bold bg-blue-50 text-blue-800 text-center" readonly></div>
-                    <div class="col-span-2 mt-2 flex flex-col justify-center items-center"><label class="block text-[10px] text-slate-500">総合合否判定</label><span class="text-emerald-600 font-bold text-xl">● 合格</span></div>
+                    <div class="col-span-2 mt-2 flex flex-col justify-center items-center"><label class="block text-[10px] text-slate-500 mb-1 font-bold">総合合否判定</label><select class="border-2 border-emerald-400 p-1.5 rounded text-base font-bold text-emerald-700 bg-emerald-50 text-center w-36 focus:outline-none cursor-pointer shadow-sm" onchange="this.className=this.value==='fail'?'border-2 border-red-400 p-1.5 rounded text-base font-bold text-red-700 bg-red-50 text-center w-36 focus:outline-none cursor-pointer shadow-sm':'border-2 border-emerald-400 p-1.5 rounded text-base font-bold text-emerald-700 bg-emerald-50 text-center w-36 focus:outline-none cursor-pointer shadow-sm'"><option value="pass" selected>● 合格</option><option value="fail">× 不合格</option></select></div>
                 </div>
-                <div class="flex justify-end pt-5 border-t">
-                    <button onclick="confirmData()" class="bg-blue-600 text-white px-10 py-3 rounded font-bold shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all">データ確定</button>
+                <div class="flex justify-end gap-4 pt-5 border-t">
+                    <button onclick="confirmData('review')" class="bg-white border-2 border-blue-600 text-blue-600 px-8 py-2.5 rounded font-bold shadow-sm hover:bg-blue-50 transition-colors">レビュー済</button>
+                    <button onclick="confirmData('confirm')" class="bg-blue-600 text-white px-10 py-2.5 rounded font-bold shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all">データ確定</button>
                 </div>
             </div>
         </div>
@@ -402,63 +345,44 @@
 function switchTab(tabId) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.getElementById('tab-' + tabId).classList.add('active');
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('border-blue-600', 'text-blue-600');
-        btn.classList.add('border-transparent', 'text-slate-500');
-    });
+    document.querySelectorAll('.tab-btn').forEach(btn => { btn.classList.remove('border-blue-600','text-blue-600'); btn.classList.add('border-transparent','text-slate-500'); });
     const activeBtn = document.getElementById('tab-btn-' + tabId);
-    activeBtn.classList.remove('border-transparent', 'text-slate-500');
-    activeBtn.classList.add('border-blue-600', 'text-blue-600');
+    activeBtn.classList.remove('border-transparent','text-slate-500');
+    activeBtn.classList.add('border-blue-600','text-blue-600');
 }
 function toggleDetail(rowId, btnId) {
-    const detailRow = document.getElementById(rowId);
-    const btn = document.getElementById(btnId);
-    if (detailRow.classList.contains('hidden')) {
-        detailRow.classList.remove('hidden');
-        btn.innerText = '-';
-        btn.classList.add('bg-blue-50', 'text-blue-600', 'border-blue-300');
-    } else {
-        detailRow.classList.add('hidden');
-        btn.innerText = '+';
-        btn.classList.remove('bg-blue-50', 'text-blue-600', 'border-blue-300');
-    }
+    const d = document.getElementById(rowId), b = document.getElementById(btnId);
+    if (d.classList.contains('hidden')) { d.classList.remove('hidden'); b.innerText='-'; b.classList.add('bg-blue-50','text-blue-600','border-blue-300'); }
+    else { d.classList.add('hidden'); b.innerText='+'; b.classList.remove('bg-blue-50','text-blue-600','border-blue-300'); }
 }
-function toggleAllChecks(source, targetClass) {
-    const checkboxes = document.querySelectorAll(targetClass);
-    checkboxes.forEach(cb => cb.checked = source.checked);
+function toggleAllChecks(s,c){document.querySelectorAll(c).forEach(cb=>cb.checked=s.checked);}
+function openModal(id){document.getElementById(id).classList.remove('hidden');}
+function closeModal(id){document.getElementById(id).classList.add('hidden');}
+function openPrintModal(){document.getElementById('print-count-display').innerText=document.querySelectorAll('.cb-list:checked').length;openModal('print-modal');}
+function downloadSamplePDF(){
+    const d="JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBvYmoKPDwvTGVuZ3RoIDMgMCBSL0ZpbHRlci9GbGF0ZURlY29kZT4+CnN0cmVhbQp4nDPQM1Qo5ypUMFAwALJMLU31jBQsTAz1LBSKUrnCtRTyuVIVSjLzEjXyFZJLFYoSS0qLFZJLUopLgSIgAQCJ2A2eCmVuZHN0cmVhbQplbmRvYmoKCjMgMCBvYmoKNjgKZW5kb2JqCgo0IDAgb2JqCjw8L1R5cGUvUGFnZS9NZWRpYUJveFswIDAgNTk1IDg0Ml0vUmVzb3VyY2VzPDwvRm9udDw8L0YxIDEgMCBSPj4+Pi9Db250ZW50cyAyIDAgUi9QYXJlbnQgNSAwIFI+PgplbmRvYmoKCjEgMCBvYmoKPDwvVHlwZS9Gb250L1N1YnR5cGUvVHlwZTEvQmFzZUZvbnQvSGVsdmV0aWNhPj4KZW5kb2JqCgo1IDAgb2JqCjw8L1R5cGUvUGFnZXMvS2lkc1s0IDAgUl0vQ291bnQgMT4+CmVuZG9iagoKNiAwIG9iago8PC9UeXBlL0NhdGFsb2cvUGFnZXMgNSAwIFI+PgplbmRvYmoKCjcgMCBvYmoKPDwvUHJvZHVjZXIoR2hvc3RzY3JpcHQgOS4yNSkvQ3JlYXRpb25EYXRlKEQ6MjAyMDEwMjUwODE0MzErMDAnMDAnKT4+CmVuZG9iagoKeHJlZgowIDgKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMjMzIDAwMDAwIG4gCjAwMDAwMDAwMTUgMDAwMDAgbiAKMDAwMDAwMDEzMiAwMDAwMCBuIAowMDAwMDAwMTUyIDAwMDAwIG4gCjAwMDAwMDAzMjEgMDAwMDAgbiAKMDAwMDAwMDM3OCAwMDAwMCBuIAowMDAwMDAwNDI3IDAwMDAwIG4gCnRyYWlsZXIKPDwvU2l6ZSA4L1Jvb3QgNiAwIFIvSW5mbyA3IDAgUj4+CnN0YXJ0eHJlZgo1MzQKJSVFT0YK";
+    const a=document.createElement('a');a.href='data:application/pdf;base64,'+d;a.download='施工結果報告書_出力サンプル.pdf';document.body.appendChild(a);a.click();document.body.removeChild(a);closeModal('print-modal');
 }
-function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-function openPrintModal() {
-    const checkedCount = document.querySelectorAll('.cb-list:checked').length;
-    document.getElementById('print-count-display').innerText = checkedCount;
-    openModal('print-modal');
+function startUpload(){
+    document.getElementById('up-step-1').classList.add('hidden');document.getElementById('up-step-2').classList.remove('hidden');
+    let p=0;const bar=document.getElementById('up-bar');
+    const iv=setInterval(()=>{p+=5;bar.style.width=p+'%';if(p>=100){clearInterval(iv);setTimeout(()=>{document.getElementById('up-step-2').classList.add('hidden');document.getElementById('up-step-3').classList.remove('hidden');document.getElementById('doc-badge').innerText='2';},300);}},50);
 }
-function startUpload() {
-    document.getElementById('up-step-1').classList.add('hidden');
-    document.getElementById('up-step-2').classList.remove('hidden');
-    let p = 0; const bar = document.getElementById('up-bar');
-    const iv = setInterval(() => {
-        p += 5; bar.style.width = p + '%';
-        if(p >= 100){
-            clearInterval(iv);
-            setTimeout(() => {
-                document.getElementById('up-step-2').classList.add('hidden');
-                document.getElementById('up-step-3').classList.remove('hidden');
-                document.getElementById('doc-badge').innerText = '2';
-            }, 300);
-        }
-    }, 50);
-}
-function confirmData() {
+function confirmData(actionType){
     closeModal('check-modal');
-    const row = document.getElementById('verify-row-1');
-    row.classList.remove('bg-amber-50/20', 'hover:bg-amber-50/40');
-    row.cells[2].innerHTML = '<span class="text-[10px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded font-bold border border-emerald-200">確定済</span>';
-    row.cells[8].innerHTML = '<span class="text-xs">03/27</span>';
-    row.cells[9].innerHTML = '<span class="text-xs">あなた</span>';
-    row.cells[10].innerHTML = '<span class="text-[10px] text-slate-400 font-bold">完了</span>';
-    document.getElementById('doc-badge').style.display = 'none';
+    const row=document.getElementById('verify-row-1');
+    row.classList.remove('bg-amber-50/20','hover:bg-amber-50/40','bg-blue-50/20','hover:bg-blue-50/40');
+    if(actionType==='review'){
+        row.classList.add('bg-blue-50/20','hover:bg-blue-50/40');
+        document.getElementById('status-cell-1').innerHTML='<span class="text-[10px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold border border-blue-200 shadow-sm">レビュー済</span>';
+        document.getElementById('action-cell-1').innerHTML='<button onclick="openModal(\'check-modal\')" class="bg-white border border-slate-800 hover:bg-slate-800 hover:text-white px-3 py-1.5 rounded text-[10px] font-bold shadow-sm flex items-center gap-1 mx-auto transition-colors">👁 詳細・確定</button>';
+    }else{
+        document.getElementById('status-cell-1').innerHTML='<span class="text-[10px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded font-bold border border-emerald-200 shadow-sm">確認済</span>';
+        document.getElementById('date-cell-1').innerHTML='<span class="text-xs">03/27</span>';
+        document.getElementById('user-cell-1').innerHTML='<span class="text-xs">あなた</span>';
+        document.getElementById('action-cell-1').innerHTML='<span class="text-[10px] text-slate-400 font-bold">完了</span>';
+        document.getElementById('doc-badge').style.display='none';
+    }
 }
 </script>
 </body>
