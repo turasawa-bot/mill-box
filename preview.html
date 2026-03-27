@@ -1,259 +1,465 @@
 <!DOCTYPE html>
-<html lang="ja" class="h-full antialiased">
+<html lang="ja" class="h-full">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Mill-Box OCRデモ</title>
-<style>
-@layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){*,:before,:after,::backdrop{--tw-border-style:solid;--tw-font-weight:initial;--tw-shadow:0 0 #0000;--tw-shadow-color:initial;--tw-shadow-alpha:100%;--tw-inset-shadow:0 0 #0000;--tw-inset-shadow-color:initial;--tw-inset-shadow-alpha:100%;--tw-ring-color:initial;--tw-ring-shadow:0 0 #0000;--tw-inset-ring-color:initial;--tw-inset-ring-shadow:0 0 #0000;--tw-ring-inset:initial;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-offset-shadow:0 0 #0000}}}@layer theme{:root,:host{--font-mono:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--color-red-500:#fb2c36;--color-orange-50:#fff7ed;--color-orange-700:#c53c00;--color-amber-50:#fffbeb;--color-amber-700:#b75000;--color-green-50:#f0fdf4;--color-green-600:#00a544;--color-green-700:#008138;--color-blue-50:#eff6ff;--color-blue-700:#1447e6;--color-purple-50:#faf5ff;--color-purple-700:#8200da;--color-pink-50:#fdf2f8;--color-pink-700:#c4005c;--color-gray-50:#f9fafb;--color-gray-100:#f3f4f6;--color-gray-300:#d1d5dc;--color-gray-400:#99a1af;--color-gray-500:#6a7282;--color-gray-600:#4a5565;--color-gray-700:#364153;--color-gray-800:#1e2939;--color-white:#fff;--spacing:.25rem;--container-md:28rem;--text-base:1rem;--text-base--line-height:calc(1.5 / 1);--font-weight-medium:500;--font-weight-bold:700;--default-transition-duration:.15s;--default-transition-timing-function:cubic-bezier(.4, 0, .2, 1);--default-font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--default-mono-font-family:var(--font-mono)}@supports (color:lab(0% 0 0)){:root,:host{--color-red-500:lab(55.4814% 75.0732 48.8528);--color-orange-50:lab(97.7008% 1.53735 5.90649);--color-orange-700:lab(46.4615% 57.7275 70.8507);--color-amber-50:lab(98.6252% -.635922 8.42309);--color-amber-700:lab(47.2709% 42.9082 69.2966);--color-green-50:lab(98.1563% -5.60117 2.75915);--color-green-600:lab(59.0978% -58.6621 41.2579);--color-green-700:lab(47.0329% -47.0239 31.4788);--color-blue-50:lab(96.492% -1.14644 -5.11479);--color-blue-700:lab(36.9089% 35.0961 -85.6872);--color-purple-50:lab(97.1627% 2.99937 -4.13398);--color-purple-700:lab(36.1758% 69.8525 -80.0381);--color-pink-50:lab(96.4459% 4.53997 -1.49434);--color-pink-700:lab(42.1737% 71.8009 7.42233);--color-gray-50:lab(98.2596% -.247031 -.706708);--color-gray-100:lab(96.1596% -.0823438 -1.13575);--color-gray-300:lab(85.1236% -.612259 -3.7138);--color-gray-400:lab(65.9269% -.832707 -8.17473);--color-gray-500:lab(47.7841% -.393182 -10.0268);--color-gray-600:lab(35.6337% -1.58697 -10.8425);--color-gray-700:lab(27.1134% -.956401 -12.3224);--color-gray-800:lab(16.1051% -1.18239 -11.7533)}}}@layer base{*,:after,:before,::backdrop{box-sizing:border-box;border:0 solid;margin:0;padding:0}::file-selector-button{box-sizing:border-box;border:0 solid;margin:0;padding:0}html,:host{-webkit-text-size-adjust:100%;tab-size:4;line-height:1.5;font-family:var(--default-font-family,ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");font-feature-settings:var(--default-font-feature-settings,normal);font-variation-settings:var(--default-font-variation-settings,normal);-webkit-tap-highlight-color:transparent}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:var(--default-mono-font-family,ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);font-feature-settings:var(--default-mono-font-feature-settings,normal);font-variation-settings:var(--default-mono-font-variation-settings,normal);font-size:1em}small{font-size:80%}sub,sup{vertical-align:baseline;font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}:-moz-focusring{outline:auto}progress{vertical-align:baseline}summary{display:list-item}ol,ul,menu{list-style:none}img,svg,video,canvas,audio,iframe,embed,object{vertical-align:middle;display:block}img,video{max-width:100%;height:auto}button,input,select,optgroup,textarea{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}::file-selector-button{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}:where(select:is([multiple],[size])) optgroup{font-weight:bolder}:where(select:is([multiple],[size])) optgroup option{padding-inline-start:20px}::file-selector-button{margin-inline-end:4px}::placeholder{opacity:1}@supports (not ((-webkit-appearance:-apple-pay-button))) or (contain-intrinsic-size:1px){::placeholder{color:currentColor}@supports (color:color-mix(in lab, red, red)){::placeholder{color:color-mix(in oklab, currentcolor 50%, transparent)}}}textarea{resize:vertical}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-date-and-time-value{min-height:1lh;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-datetime-edit{padding-block:0}::-webkit-datetime-edit-year-field{padding-block:0}::-webkit-datetime-edit-month-field{padding-block:0}::-webkit-datetime-edit-day-field{padding-block:0}::-webkit-datetime-edit-hour-field{padding-block:0}::-webkit-datetime-edit-minute-field{padding-block:0}::-webkit-datetime-edit-second-field{padding-block:0}::-webkit-datetime-edit-millisecond-field{padding-block:0}::-webkit-datetime-edit-meridiem-field{padding-block:0}::-webkit-calendar-picker-indicator{line-height:1}:-moz-ui-invalid{box-shadow:none}button,input:where([type=button],[type=reset],[type=submit]){appearance:button}::file-selector-button{appearance:button}::-webkit-inner-spin-button{height:auto}::-webkit-outer-spin-button{height:auto}[hidden]:where(:not([hidden=until-found])){display:none!important}}@layer components;@layer utilities{.start{inset-inline-start:var(--spacing)}.mx-auto{margin-inline:auto}.mt-2{margin-top:calc(var(--spacing) * 2)}.mt-3{margin-top:calc(var(--spacing) * 3)}.mr-1\.5{margin-right:calc(var(--spacing) * 1.5)}.mb-1{margin-bottom:calc(var(--spacing) * 1)}.mb-3{margin-bottom:calc(var(--spacing) * 3)}.block{display:block}.flex{display:flex}.hidden{display:none}.inline-block{display:inline-block}.inline-flex{display:inline-flex}.table{display:table}.h-3{height:calc(var(--spacing) * 3)}.h-3\.5{height:calc(var(--spacing) * 3.5)}.h-4{height:calc(var(--spacing) * 4)}.h-6{height:calc(var(--spacing) * 6)}.h-7{height:calc(var(--spacing) * 7)}.h-10{height:calc(var(--spacing) * 10)}.h-full{height:100%}.h-screen{height:100vh}.min-h-full{min-height:100%}.w-3{width:calc(var(--spacing) * 3)}.w-3\.5{width:calc(var(--spacing) * 3.5)}.w-4{width:calc(var(--spacing) * 4)}.w-6{width:calc(var(--spacing) * 6)}.w-7{width:calc(var(--spacing) * 7)}.w-8{width:calc(var(--spacing) * 8)}.w-10{width:calc(var(--spacing) * 10)}.w-\[60px\]{width:60px}.w-\[90px\]{width:90px}.w-\[100px\]{width:100px}.w-\[120px\]{width:120px}.w-\[180px\]{width:180px}.w-full{width:100%}.max-w-md{max-width:var(--container-md)}.min-w-\[160px\]{min-width:160px}.flex-1{flex:1}.shrink-0{flex-shrink:0}.rotate-90{rotate:90deg}.cursor-pointer{cursor:pointer}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.items-end{align-items:flex-end}.justify-between{justify-content:space-between}.justify-center{justify-content:center}.gap-1{gap:calc(var(--spacing) * 1)}.gap-1\.5{gap:calc(var(--spacing) * 1.5)}.gap-2{gap:calc(var(--spacing) * 2)}.gap-2\.5{gap:calc(var(--spacing) * 2.5)}.gap-3{gap:calc(var(--spacing) * 3)}.gap-6{gap:calc(var(--spacing) * 6)}.truncate{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.overflow-auto{overflow:auto}.overflow-hidden{overflow:hidden}.rounded{border-radius:.25rem}.rounded-full{border-radius:3.40282e38px}.border{border-style:var(--tw-border-style);border-width:1px}.border-2{border-style:var(--tw-border-style);border-width:2px}.border-t{border-top-style:var(--tw-border-style);border-top-width:1px}.border-r{border-right-style:var(--tw-border-style);border-right-width:1px}.border-b{border-bottom-style:var(--tw-border-style);border-bottom-width:1px}.border-l-3{border-left-style:var(--tw-border-style);border-left-width:3px}.border-dashed{--tw-border-style:dashed;border-style:dashed}.border-\[\#1a6fc9\]{border-color:#1a6fc9}.border-\[\#d0d0d0\]{border-color:#d0d0d0}.border-\[\#e0e0e0\]{border-color:#e0e0e0}.border-\[\#f0f0f0\]{border-color:#f0f0f0}.border-gray-300{border-color:var(--color-gray-300)}.bg-\[\#e8f0fe\]{background-color:#e8f0fe}.bg-\[\#f5f5f5\]{background-color:#f5f5f5}.bg-\[\#fafafa\]{background-color:#fafafa}.bg-amber-50{background-color:var(--color-amber-50)}.bg-blue-50{background-color:var(--color-blue-50)}.bg-gray-100{background-color:var(--color-gray-100)}.bg-gray-300{background-color:var(--color-gray-300)}.bg-green-50{background-color:var(--color-green-50)}.bg-orange-50{background-color:var(--color-orange-50)}.bg-pink-50{background-color:var(--color-pink-50)}.bg-purple-50{background-color:var(--color-purple-50)}.bg-white{background-color:var(--color-white)}.p-3{padding:calc(var(--spacing) * 3)}.p-6{padding:calc(var(--spacing) * 6)}.p-16{padding:calc(var(--spacing) * 16)}.px-2{padding-inline:calc(var(--spacing) * 2)}.px-2\.5{padding-inline:calc(var(--spacing) * 2.5)}.px-3\.5{padding-inline:calc(var(--spacing) * 3.5)}.px-4{padding-inline:calc(var(--spacing) * 4)}.px-6{padding-inline:calc(var(--spacing) * 6)}.py-0\.5{padding-block:calc(var(--spacing) * .5)}.py-1\.5{padding-block:calc(var(--spacing) * 1.5)}.py-2{padding-block:calc(var(--spacing) * 2)}.py-2\.5{padding-block:calc(var(--spacing) * 2.5)}.py-3{padding-block:calc(var(--spacing) * 3)}.py-4{padding-block:calc(var(--spacing) * 4)}.pb-1\.5{padding-bottom:calc(var(--spacing) * 1.5)}.pb-3{padding-bottom:calc(var(--spacing) * 3)}.text-center{text-align:center}.text-left{text-align:left}.text-right{text-align:right}.text-base{font-size:var(--text-base);line-height:var(--tw-leading,var(--text-base--line-height))}.text-\[11px\]{font-size:11px}.text-\[12px\]{font-size:12px}.text-\[13px\]{font-size:13px}.text-\[14px\]{font-size:14px}.font-bold{--tw-font-weight:var(--font-weight-bold);font-weight:var(--font-weight-bold)}.font-medium{--tw-font-weight:var(--font-weight-medium);font-weight:var(--font-weight-medium)}.text-\[\#1a6fc9\]{color:#1a6fc9}.text-amber-700{color:var(--color-amber-700)}.text-blue-700{color:var(--color-blue-700)}.text-gray-300{color:var(--color-gray-300)}.text-gray-400{color:var(--color-gray-400)}.text-gray-500{color:var(--color-gray-500)}.text-gray-600{color:var(--color-gray-600)}.text-gray-700{color:var(--color-gray-700)}.text-gray-800{color:var(--color-gray-800)}.text-green-600{color:var(--color-green-600)}.text-green-700{color:var(--color-green-700)}.text-orange-700{color:var(--color-orange-700)}.text-pink-700{color:var(--color-pink-700)}.text-purple-700{color:var(--color-purple-700)}.text-white{color:var(--color-white)}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ring-2{--tw-ring-shadow:var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color,currentcolor);box-shadow:var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}.ring-\[\#1a6fc9\]\/20{--tw-ring-color:#1a6fc933}@supports (color:lab(0% 0 0)){.ring-\[\#1a6fc9\]\/20{--tw-ring-color:lab(45.8611% 1.84125 -54.6223/.2)}}.transition-colors{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,--tw-gradient-from,--tw-gradient-via,--tw-gradient-to;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.transition-transform{transition-property:transform,translate,scale,rotate;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}@media (hover:hover){.hover\:border-\[\#aaa\]:hover{border-color:#aaa}.hover\:border-gray-400:hover{border-color:var(--color-gray-400)}.hover\:bg-\[\#fafafa\]:hover{background-color:#fafafa}.hover\:bg-blue-50:hover{background-color:var(--color-blue-50)}.hover\:bg-gray-50:hover{background-color:var(--color-gray-50)}.hover\:text-\[\#1a6fc9\]:hover{color:#1a6fc9}.hover\:text-gray-500:hover{color:var(--color-gray-500)}.hover\:text-gray-600:hover{color:var(--color-gray-600)}.hover\:text-gray-800:hover{color:var(--color-gray-800)}.hover\:text-red-500:hover{color:var(--color-red-500)}}.disabled\:cursor-not-allowed:disabled{cursor:not-allowed}.disabled\:opacity-40:disabled{opacity:.4}}:root{--background:#f5f5f5;--foreground:#333;--brand-blue:#1a6fc9;--brand-blue-light:#e8f0fe;--border-color:#e0e0e0;--sidebar-width:180px}body{background:var(--background);color:var(--foreground);font-size:14px}::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}@property --tw-border-style{syntax:"*";inherits:false;initial-value:solid}@property --tw-font-weight{syntax:"*";inherits:false}@property --tw-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-shadow-color{syntax:"*";inherits:false}@property --tw-shadow-alpha{syntax:"<percentage>";inherits:false;initial-value:100%}@property --tw-inset-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-shadow-color{syntax:"*";inherits:false}@property --tw-inset-shadow-alpha{syntax:"<percentage>";inherits:false;initial-value:100%}@property --tw-ring-color{syntax:"*";inherits:false}@property --tw-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-ring-color{syntax:"*";inherits:false}@property --tw-inset-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-ring-inset{syntax:"*";inherits:false}@property --tw-ring-offset-width{syntax:"<length>";inherits:false;initial-value:0}@property --tw-ring-offset-color{syntax:"*";inherits:false;initial-value:#fff}@property --tw-ring-offset-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}
-/* Additional utilities for OCR UI */
-.fixed{position:fixed}.inset-0{inset:0}.z-50{z-index:50}.p-1{padding:.25rem}.p-4{padding:1rem}.p-5{padding:1.25rem}
-.w-5{width:1.25rem}.h-5{height:1.25rem}.w-\[160px\]{width:160px}
-.bg-black-overlay{background-color:rgba(0,0,0,0.3)}
-.shadow-xl{box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1)}
-.rounded-lg{border-radius:.5rem}.max-w-2xl{max-width:42rem}.max-h-85vh{max-height:85vh}
-.bg-brand{background-color:#1a6fc9}.hover-bg-brand:hover{background-color:#155ba5}
-.text-blue-500{color:#3b82f6}.text-amber-500{color:#f59e0b}.text-amber-600{color:#d97706}
-.bg-amber-50-c{background-color:#fffbeb}
-@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}
-.opacity-25{opacity:.25}.opacity-75{opacity:.75}
-.hover-underline:hover{text-decoration:underline}
-.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-3-c{padding-top:.75rem;padding-bottom:.75rem}
-.mt-0-5{margin-top:.125rem}
-</style>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Mill-Box ENGINE | 統合管理システム</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; overflow: hidden; }
+        .sidebar-bg { background: #0f172a; }
+        .sidebar-active { background: #1e293b; border-left: 4px solid #3b82f6; }
+        .my-table th { font-size: 11px; background: #f1f5f9; color: #475569; font-weight: 600; border-bottom: 1px solid #cbd5e1; padding: 10px 8px; white-space: nowrap; }
+        .my-table td { border-bottom: 1px solid #e2e8f0; padding: 10px 8px; font-size: 12px; vertical-align: middle; background: #ffffff; white-space: nowrap; }
+        .my-table tr.hover-row:hover td { background: #f8fafc; }
+        .detail-table { border-collapse: collapse; }
+        .detail-table th, .detail-table td { border: 1px solid #cbd5e1; padding: 6px 8px; font-size: 10px; text-align: center; vertical-align: middle; white-space: nowrap; }
+        .detail-table th { color: #334155; font-weight: 700; }
+        ::-webkit-scrollbar { width: 6px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .matrix-container { overflow: auto; height: 100%; flex: 1; }
+        .matrix-table { border-collapse: separate; border-spacing: 0; min-width: 1700px; table-layout: fixed; }
+        .matrix-table th, .matrix-table td { border-right: 1px solid #cbd5e1; border-bottom: 1px solid #cbd5e1; padding: 6px 8px; font-size: 11px; text-align: center; white-space: nowrap; background: #fff; }
+        .matrix-table thead th { position: sticky; top: 0; z-index: 10; font-weight: 700; }
+        .sticky-left { position: sticky; left: 0; z-index: 20; box-shadow: 2px 0 5px -2px rgba(0,0,0,0.15); border-right: 2px solid #94a3b8 !important; }
+        .matrix-table thead th.sticky-left { z-index: 30; background: #f1f5f9; }
+        .bg-mix { background-color: #fffbeb !important; }
+        .bg-fresh { background-color: #f0f9ff !important; }
+        .bg-str-p { background-color: #f0fdf4 !important; }
+        .bg-str-s { background-color: #f8fafc !important; }
+        .tab-btn { transition: all 0.2s; margin-bottom: -1px; }
+        .tab-content { display: none; height: 100%; flex-direction: column; overflow: hidden; }
+        .tab-content.active { display: flex; }
+    </style>
 </head>
-<body class="min-h-full flex flex-col bg-[#f5f5f5]">
-<div id="app" class="flex h-screen overflow-hidden">
-<!-- Sidebar -->
-<aside class="w-[180px] shrink-0 bg-white border-r border-[#e0e0e0] flex flex-col">
-<div class="px-4 py-4 border-b border-[#e0e0e0]"><div class="flex items-center gap-2">
-<svg class="w-6 h-6 text-[#1a6fc9]" fill="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1" opacity="0.6"/><rect x="3" y="13" width="8" height="8" rx="1" opacity="0.6"/><rect x="13" y="13" width="8" height="8" rx="1" opacity="0.3"/></svg>
-<span class="text-base font-bold text-gray-800">Mill-Box</span></div></div>
-<nav class="flex-1 py-2">
-<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-[#1a6fc9] bg-[#e8f0fe] font-medium border-l-3 border-[#1a6fc9]"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>生コン書類</a>
-<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">帳票</a>
-<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">利用料</a>
-<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">ユーザー</a>
-<a href="#" class="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">admin</a>
-</nav>
-<div class="border-t border-[#e0e0e0] px-4 py-3"><div class="flex items-center gap-2">
-<div class="w-7 h-7 rounded-full bg-gray-300 flex items-center justify-center text-[11px] text-white font-bold">U</div>
-<div class="overflow-hidden"><p class="text-[12px] text-gray-700 truncate">user@example.com</p><p class="text-[11px] text-gray-400">demo</p></div></div></div>
+<body class="h-full text-slate-800 flex">
+<aside class="w-[240px] sidebar-bg text-white flex flex-col shrink-0 z-40 shadow-lg">
+    <div class="p-6"><h1 class="text-xl font-bold tracking-tight">Mill-Box <span class="text-[10px] text-slate-400 font-normal uppercase">ENGINE</span></h1></div>
+    <div class="py-2 flex-1">
+        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-2 px-6">メインメニュー</p>
+        <nav>
+            <a href="#" class="flex items-center px-6 py-3 sidebar-active text-sm font-medium">生コン</a>
+            <a href="#" class="flex items-center px-6 py-3 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors text-sm font-medium">プラント設定</a>
+        </nav>
+    </div>
+    <div class="mt-auto m-4 p-4 bg-slate-800 rounded-lg text-xs text-slate-400 space-y-1">
+        <p class="font-bold text-slate-300">学習済み様式:</p>
+        <p>・日東コン(普通/高強度)</p><p>・大崎技セ(3P構成)</p><p>・工場発行成績書</p>
+    </div>
 </aside>
-
-<!-- Main -->
-<div class="flex-1 flex flex-col overflow-hidden">
-<header class="bg-white border-b border-[#e0e0e0] px-6 py-3 flex items-center justify-between shrink-0">
-<h1 class="text-base font-bold text-gray-800">生コン書類一括アップロード</h1>
-<div class="flex items-center gap-2">
-<button onclick="document.getElementById('file-input').click()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-[#1a6fc9] text-[#1a6fc9] rounded text-[13px] font-medium hover:bg-blue-50 transition-colors">+ PDFアップロード</button>
-<button id="btn-lot" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-[#e0e0e0] text-gray-600 rounded text-[13px] font-medium disabled:opacity-40 disabled:cursor-not-allowed" disabled>ロット仕分け</button>
-</div></header>
-
-<!-- Filter -->
-<div class="bg-white border-b border-[#e0e0e0] shrink-0">
-<button onclick="toggleFilter()" class="flex items-center gap-1.5 px-6 py-2.5 text-[13px] text-gray-600 hover:text-gray-800 w-full text-left">
-<svg id="filter-arrow" class="w-3 h-3 rotate-90 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 0 1 .02-1.06L11.168 10 7.23 6.29a.75.75 0 1 1 1.04-1.08l4.5 4.25a.75.75 0 0 1 0 1.08l-4.5 4.25a.75.75 0 0 1-1.06-.02Z" clip-rule="evenodd"/></svg>
-書類を絞り込み</button>
-<div id="filter-panel" class="px-6 pb-3 flex items-end gap-6">
-<div><label class="block text-[12px] text-gray-500 mb-1">書類分類</label>
-<select id="filter-select" onchange="render()" class="border border-[#e0e0e0] rounded px-2.5 py-1.5 text-[13px] text-gray-700 bg-white min-w-[160px]">
-<option>指定なし</option><option>配合計画書</option><option>フレッシュ試験</option><option>圧縮強度試験</option><option>納入伝票</option><option>打設計画書</option><option>受入写真</option><option>未分類</option>
-</select></div>
-<button onclick="document.getElementById('filter-select').value='指定なし';render()" class="text-[12px] text-gray-400 hover:text-gray-600 pb-1.5">条件をクリア</button>
-</div></div>
-
-<!-- Content -->
-<div class="flex-1 overflow-auto p-6">
-<input id="file-input" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" onchange="handleFiles(this.files);this.value=''" class="hidden"/>
-<div id="content"></div>
-</div></div></div>
-
-<!-- Modal -->
-<div id="modal" class="fixed inset-0 bg-black-overlay z-50 flex items-center justify-center p-4" style="display:none">
-<div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-85vh flex flex-col">
-<div class="flex items-center justify-between px-5 py-3 border-b border-[#e0e0e0]">
-<div><h2 class="text-[15px] font-bold text-gray-800">OCR抽出結果</h2><p id="modal-filename" class="text-[12px] text-gray-400 mt-0-5 truncate" style="max-width:28rem"></p></div>
-<button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 p-1">&times;</button>
+<main class="flex-1 flex flex-col min-w-0 bg-slate-50 relative">
+    <header class="bg-white px-8 pt-5 flex justify-between items-end shrink-0 z-10 border-b border-slate-200 shadow-sm">
+        <div class="flex flex-col gap-1.5 mb-3">
+            <h2 class="text-xl font-bold text-slate-800">生コン</h2>
+            <p class="text-xs text-slate-500">コンクリート施工結果報告書 (様式第05号・第22号様式等) 自動生成フロー</p>
+        </div>
+        <div class="flex gap-3 mb-4">
+            <button onclick="openModal('upload-modal')" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded text-sm font-bold shadow-sm transition-colors flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                ファイルアップロード
+            </button>
+            <button onclick="openPrintModal()" class="bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 px-5 py-2 rounded text-sm font-bold shadow-sm flex items-center gap-2 transition-colors">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                印刷・出力
+            </button>
+        </div>
+    </header>
+    <div class="bg-white border-b border-slate-200 px-8 flex gap-8 shrink-0 z-10 relative">
+        <button onclick="switchTab('list')" id="tab-btn-list" class="tab-btn pb-3 text-sm font-bold border-b-2 border-blue-600 text-blue-600">打設一覧</button>
+        <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800">試験結果一覧</button>
+        <button onclick="switchTab('docs')" id="tab-btn-docs" class="tab-btn pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-1.5">
+            アップロード一覧 <span id="doc-badge" class="bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">1</span>
+        </button>
+    </div>
+    <div id="tab-list" class="tab-content active p-6 gap-4">
+        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm shrink-0">
+            <div class="flex flex-wrap items-end gap-3.5">
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">打設日 (From-To)</label><div class="flex items-center gap-1.5"><input type="date" class="border rounded px-2 py-1.5 text-xs w-28"> - <input type="date" class="border rounded px-2 py-1.5 text-xs w-28"></div></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">種類</label><select class="border rounded px-2 py-1.5 text-xs w-24"><option>すべて</option><option>普通</option></select></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">工区</label><input type="text" placeholder="基礎1工区" class="border rounded px-2 py-1.5 text-xs w-28"></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">節</label><input type="text" placeholder="1F" class="border rounded px-2 py-1.5 text-xs w-16"></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">部位</label><input type="text" placeholder="柱・壁" class="border rounded px-2 py-1.5 text-xs w-28"></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">配合No</label><input type="text" placeholder="24-18-20N" class="border rounded px-2 py-1.5 text-xs w-24"></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">確認状況</label><select class="border rounded px-2 py-1.5 text-xs w-24"><option>すべて</option><option>要確認</option><option>確定済</option></select></div>
+                <button class="bg-slate-800 text-white px-5 py-1.5 rounded text-xs font-bold h-[30px] shadow-sm flex items-center gap-1.5 hover:bg-slate-700 transition-colors">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>絞り込み
+                </button>
+            </div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-lg shadow-sm flex-1 overflow-hidden flex flex-col">
+            <div class="overflow-auto flex-1 custom-scrollbar">
+                <table class="w-full text-left my-table min-w-[1200px]">
+                    <thead class="sticky top-0 bg-slate-50 z-10 shadow-sm">
+                        <tr>
+                            <th class="w-10 text-center"><input type="checkbox" id="check-all-list" class="w-4 h-4 text-blue-600 rounded border-slate-300 cursor-pointer shadow-sm" onchange="toggleAllChecks(this, '.cb-list')"></th>
+                            <th class="w-10 text-center"></th>
+                            <th class="w-20 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>確認状況</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="w-24 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>打設日</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="w-16 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>種類</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>工区</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="w-12 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>節</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>部位</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="w-28 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>配合No</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="w-24 px-2 hover:bg-slate-200 cursor-pointer"><div class="flex items-center justify-between"><span>数量(m³)</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="w-12 text-center text-[10px]">計画</th><th class="w-12 text-center text-[10px]">試験</th><th class="w-12 text-center text-[10px]">伝票</th><th class="w-12 text-center text-[10px]">写真</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover-row cursor-pointer border-b border-slate-200" onclick="if(event.target.tagName==='INPUT' || event.target.closest('input')) return; toggleDetail('dl-1', 'btn-1')">
+                            <td class="text-center" onclick="event.stopPropagation();"><input type="checkbox" class="cb-list print-cb w-4 h-4 text-blue-600 rounded border-slate-300 cursor-pointer"></td>
+                            <td class="text-center"><button id="btn-1" class="w-5 h-5 rounded border border-slate-300 flex items-center justify-center text-slate-500 font-bold bg-white mx-auto hover:bg-slate-100 hover:text-blue-600 shadow-sm transition-colors">+</button></td>
+                            <td><span class="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-bold">確定済</span></td>
+                            <td class="font-mono">2026/03/27</td><td>普通</td><td class="font-bold">基礎1工区</td><td>1F</td><td>柱・壁</td><td class="font-mono text-[11px]">24-18-20N</td><td class="text-right pr-6 font-mono">150.0</td>
+                            <td class="text-center text-red-500 cursor-pointer">📄</td><td class="text-center text-red-500 cursor-pointer">📄</td><td class="text-center text-red-500 cursor-pointer">📄</td><td class="text-center text-red-500 cursor-pointer">📄</td>
+                        </tr>
+                        <tr id="dl-1" class="hidden bg-slate-100/50 shadow-inner">
+                            <td colspan="14" class="p-4">
+                                <div class="w-full overflow-x-auto pb-2 custom-scrollbar">
+                                    <table class="detail-table bg-white min-w-[1200px] shadow-sm rounded">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="6" class="bg-mix">配合</th>
+                                                <th colspan="8" class="bg-fresh">フレッシュコンクリート 受入検査</th>
+                                                <th colspan="4" class="bg-str-p">圧縮強度 (調合管理:28d)</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-mix">呼び</th><th class="bg-mix">スランプ</th><th class="bg-mix">骨材</th><th class="bg-mix">セメント</th><th class="bg-mix">Fc</th><th class="bg-mix">Fq</th>
+                                                <th class="bg-fresh">スランプ</th><th class="bg-fresh">空気量</th><th class="bg-fresh">温度</th><th class="bg-fresh">塩化物</th><th class="bg-fresh">単位容積</th><th class="bg-fresh">フロー</th><th class="bg-fresh">外気温</th><th class="bg-fresh">判定</th>
+                                                <th class="bg-str-p">試験日</th><th class="bg-str-p">圧縮強度</th><th class="bg-str-p">平均</th><th class="bg-str-p">判定</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="3">24</td><td rowspan="3">18</td><td rowspan="3">20</td><td rowspan="3">N</td><td rowspan="3">24</td><td rowspan="3">27</td>
+                                                <td class="text-blue-600 font-bold">19.5</td><td class="text-blue-600 font-bold">4.9</td><td>28</td><td>0.01</td><td>2300</td><td>34.0x33.0</td><td>27</td><td><span class="text-emerald-500 bg-emerald-50 px-1 rounded font-bold">合</span></td>
+                                                <td rowspan="3">2026/04/24</td><td>28.5</td><td rowspan="3" class="font-bold bg-slate-50 text-base">29.1</td><td rowspan="3"><span class="text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold">合</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-blue-600 font-bold">19.0</td><td class="text-blue-600 font-bold">4.5</td><td>28</td><td>0.01</td><td>2310</td><td>32.5x32.0</td><td>27</td><td><span class="text-emerald-600 bg-emerald-50 px-1 rounded font-bold">合</span></td>
+                                                <td>29.2</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-blue-600 font-bold">20.0</td><td class="text-blue-600 font-bold">4.8</td><td>27</td><td>0.01</td><td>2305</td><td>36.0x32.0</td><td>26</td><td><span class="text-emerald-600 bg-emerald-50 px-1 rounded font-bold">合</span></td>
+                                                <td>29.7</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="tab-matrix" class="tab-content p-6 gap-4">
+        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm shrink-0">
+            <div class="flex flex-wrap items-end gap-3.5">
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">打設日 (From-To)</label><div class="flex items-center gap-1.5"><input type="date" class="border rounded px-2 py-1.5 text-xs w-28"> - <input type="date" class="border rounded px-2 py-1.5 text-xs w-28"></div></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">種類</label><select class="border rounded px-2 py-1.5 text-xs w-24"><option>すべて</option><option>普通</option></select></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">工区</label><input type="text" placeholder="基礎1工区" class="border rounded px-2 py-1.5 text-xs w-28"></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">節</label><input type="text" placeholder="1F" class="border rounded px-2 py-1.5 text-xs w-16"></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">部位</label><input type="text" placeholder="柱・壁" class="border rounded px-2 py-1.5 text-xs w-28"></div>
+                <div><label class="block text-[11px] font-bold text-slate-500 mb-1">配合No</label><input type="text" placeholder="24-18-20N" class="border rounded px-2 py-1.5 text-xs w-24"></div>
+                <button class="bg-slate-800 text-white px-5 py-1.5 rounded text-xs font-bold h-[30px] shadow-sm flex items-center gap-1.5 hover:bg-slate-700 transition-colors">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>絞り込み
+                </button>
+            </div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-lg shadow-sm flex-1 overflow-hidden">
+            <div class="matrix-container custom-scrollbar">
+                <table class="matrix-table bg-white">
+                    <thead>
+                        <tr>
+                            <th colspan="1" class="sticky-left bg-slate-100 border-b-0 text-left pl-3 text-[12px]">打設・配合情報 (固定)</th>
+                            <th colspan="8" class="bg-fresh">フレッシュコンクリートの受入検査</th>
+                            <th colspan="4" class="bg-str-p">圧縮強度 (調合管理) 28日</th>
+                            <th colspan="5" class="bg-str-s">圧縮強度 (構造体) 28日</th>
+                        </tr>
+                        <tr>
+                            <th class="sticky-left p-0 border-b-0 align-bottom bg-slate-100 min-w-[400px] w-[400px]">
+                                <div class="grid grid-cols-[60px_40px_100px_50px_90px_60px] text-[11px] text-center divide-x divide-slate-300 h-full w-full">
+                                    <div class="p-2 flex items-center justify-center">打設日</div>
+                                    <div class="p-2 flex items-center justify-center">種類</div>
+                                    <div class="p-2 flex flex-col items-center justify-center gap-1"><span>工区</span><span class="text-[9px] text-slate-400">節 / 部位</span></div>
+                                    <div class="p-2 flex items-center justify-center">数量</div>
+                                    <div class="p-2 flex items-center justify-center">プラント名</div>
+                                    <div class="p-1 flex flex-col justify-center gap-1 border-l border-slate-300 bg-white">
+                                        <div class="grid grid-cols-2 divide-x divide-slate-300 text-[10px] border-b border-slate-300 pb-0.5"><div>呼</div><div>ｽﾗ</div></div>
+                                        <div class="grid grid-cols-2 divide-x divide-slate-300 text-[10px] border-b border-slate-300 pb-0.5"><div>骨</div><div>ｾﾒ</div></div>
+                                        <div class="grid grid-cols-2 divide-x divide-slate-300 text-[10px]"><div>Fc</div><div>Fq</div></div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th class="bg-fresh">スランプ</th><th class="bg-fresh">空気量</th><th class="bg-fresh">温度</th><th class="bg-fresh">塩化物量</th><th class="bg-fresh">単位容積</th><th class="bg-fresh">フロー</th><th class="bg-fresh">外気温</th><th class="bg-fresh text-emerald-700">合否</th>
+                            <th class="bg-str-p">試験日</th><th class="bg-str-p">圧縮強度</th><th class="bg-str-p">平均値</th><th class="bg-str-p text-emerald-700">合否</th>
+                            <th class="bg-str-s">試験日</th><th class="bg-str-s">養生方法</th><th class="bg-str-s">圧縮強度</th><th class="bg-str-s">平均値</th><th class="bg-str-s text-emerald-700">合否</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="3" class="sticky-left p-0 bg-white border-b border-slate-300 min-w-[400px] w-[400px]">
+                                <div class="grid grid-cols-[60px_40px_100px_50px_90px_60px] text-[11px] text-center divide-x divide-slate-200 h-full w-full">
+                                    <div class="flex items-center justify-center font-mono">03/27</div>
+                                    <div class="flex items-center justify-center text-[10px]">普通</div>
+                                    <div class="flex flex-col justify-center text-left p-2 gap-1">
+                                        <div class="font-bold truncate" title="基礎1工区">基礎1工区</div>
+                                        <div class="text-[10px] text-slate-500 truncate" title="1F - 柱・壁">1F - 柱・壁</div>
+                                    </div>
+                                    <div class="flex items-center justify-center font-mono">150.0</div>
+                                    <div class="flex items-center justify-center text-[10px] truncate px-1" title="日東コン工業 日高プラント">日東コン</div>
+                                    <div class="flex flex-col justify-center p-1 gap-1 border-l border-slate-200">
+                                        <div class="grid grid-cols-2 divide-x divide-slate-200 border-b border-slate-200 pb-0.5"><div class="font-bold">24</div><div class="font-bold">18</div></div>
+                                        <div class="grid grid-cols-2 divide-x divide-slate-200 border-b border-slate-200 pb-0.5"><div class="font-bold">20</div><div class="font-bold">N</div></div>
+                                        <div class="grid grid-cols-2 divide-x divide-slate-200"><div class="font-bold">24</div><div class="font-bold">27</div></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>19.5</td><td>4.9</td><td>28</td><td>0.01</td><td>2300</td><td>34.0x33.0</td><td>27</td><td><span class="text-emerald-600 bg-emerald-50 px-1 rounded">合</span></td>
+                            <td rowspan="3" class="border-b border-slate-300">26/04/24</td><td class="border-b border-slate-200">28.5</td><td rowspan="3" class="bg-slate-50 font-bold text-sm border-b border-slate-300">29.1</td><td rowspan="3" class="border-b border-slate-300"><span class="text-emerald-600 bg-emerald-50 px-1 rounded">合</span></td>
+                            <td rowspan="3" class="border-b border-slate-300">26/04/24</td><td rowspan="3" class="border-b border-slate-300">標準</td><td class="border-b border-slate-200">28.2</td><td rowspan="3" class="bg-slate-50 font-bold text-sm border-b border-slate-300">28.9</td><td rowspan="3" class="border-b border-slate-300"><span class="text-emerald-600 bg-emerald-50 px-1 rounded">合</span></td>
+                        </tr>
+                        <tr>
+                            <td class="border-b border-slate-200">19.0</td><td class="border-b border-slate-200">4.5</td><td class="border-b border-slate-200">28</td><td class="border-b border-slate-200">0.01</td><td class="border-b border-slate-200">2310</td><td class="border-b border-slate-200">32.5x32.0</td><td class="border-b border-slate-200">27</td><td class="border-b border-slate-200"><span class="text-emerald-600 bg-emerald-50 px-1 rounded">合</span></td>
+                            <td class="border-b border-slate-200">29.2</td><td class="border-b border-slate-200">29.0</td>
+                        </tr>
+                        <tr>
+                            <td class="border-b border-slate-300">20.0</td><td class="border-b border-slate-300">4.8</td><td class="border-b border-slate-300">27</td><td class="border-b border-slate-300">0.01</td><td class="border-b border-slate-300">2305</td><td class="border-b border-slate-300">36.0x32.0</td><td class="border-b border-slate-300">26</td><td class="border-b border-slate-300"><span class="text-emerald-600 bg-emerald-50 px-1 rounded">合</span></td>
+                            <td class="border-b border-slate-300">29.7</td><td class="border-b border-slate-300">29.5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="tab-docs" class="tab-content p-6 gap-4">
+        <div class="bg-white border border-slate-200 rounded-lg p-3 shadow-sm shrink-0 flex gap-4 items-end">
+            <div><label class="block text-[10px] font-bold text-slate-500 mb-1">ステータス</label><select class="border rounded px-2 py-1 text-xs"><option>すべて</option><option>要確認</option><option>確定済</option></select></div>
+            <div><label class="block text-[10px] font-bold text-slate-500 mb-1">帳票種別</label><select class="border rounded px-2 py-1 text-xs"><option>すべて</option><option>試験レポート</option><option>納入伝票</option></select></div>
+            <button class="bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 px-4 py-1 rounded text-xs font-bold transition-colors">クリア</button>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-lg shadow-sm flex-1 overflow-hidden flex flex-col">
+            <div class="overflow-auto flex-1 custom-scrollbar">
+                <table class="w-full text-left my-table min-w-[1200px]">
+                    <thead class="sticky top-0 bg-slate-50 z-10 shadow-sm">
+                        <tr>
+                            <th class="w-16 text-center">プレビュー</th>
+                            <th>PDFファイル名</th>
+                            <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>ステータス</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>帳票種別</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>打設日</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>工区</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>節</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>部位</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th class="cursor-pointer hover:bg-slate-200"><div class="flex items-center justify-between"><span>UP日時</span><span class="text-slate-300 text-[10px]">▼</span></div></th>
+                            <th>UP作業者</th><th>確定日</th><th>確定者</th><th class="text-center w-28">アクション</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="verify-row-1" class="bg-amber-50/20 hover:bg-amber-50/40">
+                            <td class="text-center"><div class="w-8 h-10 border border-slate-300 bg-white mx-auto shadow-sm text-[8px] flex items-center justify-center text-slate-300">PDF</div></td>
+                            <td class="text-[11px] text-blue-600 underline cursor-pointer max-w-[150px] truncate">1CON圧縮強度試験_基礎.pdf</td>
+                            <td><span class="text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-bold animate-pulse border border-amber-200">OCR完了</span></td>
+                            <td>試験レポート</td><td class="font-mono">2026/03/28</td>
+                            <td class="text-[11px] font-bold">基礎1工区</td><td class="text-[11px]">1F</td><td class="text-[11px]">柱・壁</td>
+                            <td class="text-[10px] text-slate-500 font-mono">03/27 15:26</td><td class="text-xs">井上 哲</td><td class="text-center">-</td><td class="text-center">-</td>
+                            <td class="text-center">
+                                <button onclick="openModal('check-modal')" class="bg-white border border-slate-800 hover:bg-slate-800 hover:text-white px-3 py-1.5 rounded text-[10px] font-bold shadow-sm flex items-center gap-1 mx-auto transition-colors">
+                                    👁 詳細・確定
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+<div id="upload-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-md flex flex-col overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+            <h3 class="font-bold text-slate-800">試験結果・書類アップロード</h3>
+            <button onclick="closeModal('upload-modal')" class="text-slate-400 hover:text-slate-600">✕</button>
+        </div>
+        <div class="p-8">
+            <div id="up-step-1" class="border-2 border-dashed border-blue-300 bg-blue-50/50 rounded-xl p-10 text-center cursor-pointer hover:bg-blue-50" onclick="startUpload()">
+                <div class="text-blue-500 text-4xl mb-3">📄</div>
+                <p class="font-bold text-blue-800 mb-1">クリックしてファイルを選択</p>
+            </div>
+            <div id="up-step-2" class="hidden py-6 text-center">
+                <p class="text-xs font-bold text-slate-500 mb-3" id="up-status">AI-OCR 解析中...</p>
+                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                    <div id="up-bar" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+            <div id="up-step-3" class="hidden py-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto mb-3">✓</div>
+                <p class="font-bold text-slate-800 mb-4">アップロード・解析が完了しました。</p>
+                <button onclick="closeModal('upload-modal'); switchTab('docs');" class="bg-blue-600 text-white px-6 py-2 rounded text-sm font-bold w-full hover:bg-blue-700">アップロード一覧で確認する</button>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="flex-1 overflow-auto p-5">
-<div id="modal-header" class="flex items-center gap-3 mb-3"></div>
-<div class="rounded border border-[#e0e0e0] overflow-hidden"><table class="w-full text-[13px]">
-<thead><tr class="bg-[#fafafa] border-b border-[#e0e0e0]"><th class="text-left px-4 py-2 font-medium text-gray-500 w-[160px]">項目</th><th class="text-left px-4 py-2 font-medium text-gray-500">抽出値</th></tr></thead>
-<tbody id="modal-fields"></tbody></table></div>
+<div id="print-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-md flex flex-col overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+            <h3 class="font-bold text-slate-800">帳票出力・印刷</h3>
+            <button onclick="closeModal('print-modal')" class="text-slate-400 hover:text-slate-600">✕</button>
+        </div>
+        <div class="p-6 space-y-5">
+            <div>
+                <h4 class="text-sm font-bold text-slate-700 mb-2 border-b pb-1">出力対象データ</h4>
+                <p class="text-xs text-blue-800 font-bold mb-1 bg-blue-50 border border-blue-200 p-2.5 rounded shadow-sm">
+                    ✓ 打設一覧にて選択された <span id="print-count-display" class="text-lg mx-1 text-blue-600">0</span> 件のデータを出力します
+                </p>
+            </div>
+            <div>
+                <h4 class="text-sm font-bold text-slate-700 mb-3 border-b pb-1">メイン帳票</h4>
+                <div class="space-y-2">
+                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">コンクリート検査結果一覧表</span></label>
+                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">打設結果報告書 (様式第05号 等)</span></label>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-sm font-bold text-slate-700 mb-3 border-b pb-1">添付書類 (PDF結合)</h4>
+                <div class="space-y-2">
+                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">配合計画書</span></label>
+                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">打設計画書</span></label>
+                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" checked class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">試験レポート (原本)</span></label>
+                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">納入伝票</span></label>
+                    <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" class="w-4.5 h-4.5 text-blue-600 rounded border-slate-300"><span class="text-sm">受入写真</span></label>
+                </div>
+            </div>
+        </div>
+        <div class="px-6 py-4 border-t border-slate-200 flex justify-end gap-3 bg-slate-50">
+            <button onclick="closeModal('print-modal')" class="px-4 py-2 border border-slate-300 text-slate-600 rounded text-sm font-bold hover:bg-slate-100">キャンセル</button>
+            <button onclick="alert('出力処理を開始します'); closeModal('print-modal');" class="px-6 py-2 bg-slate-800 text-white rounded text-sm font-bold hover:bg-slate-700 transition-colors flex items-center gap-2">PDF一括出力</button>
+        </div>
+    </div>
 </div>
-<div class="px-5 py-3 border-t border-[#e0e0e0] flex justify-between gap-2" style="justify-content:flex-end">
-<button onclick="closeModal()" class="px-4 py-1.5 text-[13px] text-gray-600 border border-[#e0e0e0] rounded hover:bg-gray-50">閉じる</button>
-<button class="px-4 py-1.5 text-[13px] text-white bg-brand rounded hover-bg-brand">データを確定</button>
-</div></div></div>
-
+<div id="check-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-6xl flex flex-col overflow-hidden max-h-[95vh]">
+        <div class="px-6 py-3 border-b border-slate-200 flex justify-between items-center bg-slate-800 text-white">
+            <h3 class="font-bold text-sm">詳細確認・確定: 1CON圧縮強度試験_基礎.pdf</h3>
+            <button onclick="closeModal('check-modal')" class="text-slate-400 hover:text-white">✕</button>
+        </div>
+        <div class="flex-1 overflow-hidden flex">
+            <div class="w-1/2 bg-slate-200 border-r border-slate-300 flex items-center justify-center p-4">
+                <div class="w-full h-full bg-white shadow-sm flex items-center justify-center text-slate-400 border border-slate-300 flex-col gap-2">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    PDFプレビュー表示領域
+                </div>
+            </div>
+            <div class="w-1/2 p-6 overflow-y-auto bg-slate-50 custom-scrollbar">
+                <div class="bg-amber-50 border border-amber-200 p-3 rounded text-xs text-amber-800 mb-6 font-bold flex items-start gap-2">
+                    <span class="text-base">⚠️</span>
+                    <p>原本PDF（左側）と見比べ、AI抽出結果に誤りがないか修正・確定してください。<br><strong class="font-bold text-red-600">オレンジ枠の項目はAIが推測しており要注意です。</strong></p>
+                </div>
+                <h4 class="text-xs font-bold text-slate-600 border-b pb-1 mb-3">基本情報</h4>
+                <div class="grid grid-cols-3 gap-x-3 gap-y-3 mb-6">
+                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">帳票種別</label><select class="w-full border p-1.5 rounded text-xs bg-white"><option>試験レポート</option><option>納入伝票</option></select></div>
+                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">打設日</label><input type="date" value="2026-03-28" class="w-full border p-1.5 rounded text-xs bg-white border-amber-400 focus:bg-amber-50"></div>
+                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">プラント名</label><input type="text" value="日東コン(株)" class="w-full border p-1.5 rounded text-xs bg-white"></div>
+                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">工区</label><input type="text" value="基礎1工区" class="w-full border p-1.5 rounded text-xs bg-white border-amber-400"></div>
+                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">節</label><input type="text" value="1F" class="w-full border p-1.5 rounded text-xs bg-white"></div>
+                    <div><label class="block text-[10px] font-bold text-slate-500 mb-0.5">部位</label><input type="text" value="柱・壁" class="w-full border p-1.5 rounded text-xs bg-white"></div>
+                </div>
+                <h4 class="text-xs font-bold text-slate-600 border-b pb-1 mb-3">配合計画</h4>
+                <div class="grid grid-cols-6 gap-x-2 gap-y-3 mb-6">
+                    <div><label class="block text-[10px] text-slate-500">呼び</label><input type="text" value="24" class="w-full border p-1 rounded text-xs text-center"></div>
+                    <div><label class="block text-[10px] text-slate-500">ｽﾗﾝﾌﾟ</label><input type="text" value="18" class="w-full border p-1 rounded text-xs text-center"></div>
+                    <div><label class="block text-[10px] text-slate-500">骨材</label><input type="text" value="20" class="w-full border p-1 rounded text-xs text-center"></div>
+                    <div><label class="block text-[10px] text-slate-500">ｾﾒﾝﾄ</label><input type="text" value="N" class="w-full border p-1 rounded text-xs text-center"></div>
+                    <div><label class="block text-[10px] text-slate-500">Fc</label><input type="text" value="24" class="w-full border p-1 rounded text-xs text-center"></div>
+                    <div><label class="block text-[10px] text-slate-500">Fq</label><input type="text" value="27" class="w-full border p-1 rounded text-xs text-center border-amber-400"></div>
+                </div>
+                <h4 class="text-xs font-bold text-slate-600 border-b pb-1 mb-3">試験結果（受入検査 / 強度）</h4>
+                <div class="grid grid-cols-4 gap-x-3 gap-y-3 mb-6">
+                    <div><label class="block text-[10px] text-slate-500">スランプ(実測)</label><input type="text" value="19.5" class="w-full border p-1 rounded text-xs border-amber-400 font-bold text-blue-700"></div>
+                    <div><label class="block text-[10px] text-slate-500">空気量(実測)</label><input type="text" value="4.9" class="w-full border p-1 rounded text-xs font-bold text-blue-700"></div>
+                    <div><label class="block text-[10px] text-slate-500">塩化物量</label><input type="text" value="0.01" class="w-full border p-1 rounded text-xs"></div>
+                    <div><label class="block text-[10px] text-slate-500">外気温</label><input type="text" value="27" class="w-full border p-1 rounded text-xs"></div>
+                    <div class="col-span-4 mt-2 border-t pt-2 grid grid-cols-4 gap-3">
+                        <div><label class="block text-[10px] text-slate-500">強度材齢</label><input type="text" value="28日" class="w-full border p-1 rounded text-xs bg-slate-100" readonly></div>
+                        <div><label class="block text-[10px] text-slate-500">圧縮 (1本目)</label><input type="text" value="28.5" class="w-full border p-1 rounded text-xs text-right"></div>
+                        <div><label class="block text-[10px] text-slate-500">圧縮 (2本目)</label><input type="text" value="29.2" class="w-full border p-1 rounded text-xs text-right"></div>
+                        <div><label class="block text-[10px] text-slate-500">圧縮 (3本目)</label><input type="text" value="29.7" class="w-full border p-1 rounded text-xs text-right border-amber-400"></div>
+                    </div>
+                    <div class="col-span-2 mt-2"><label class="block text-[10px] text-slate-500 font-bold">圧縮強度 (平均値) [N/mm²]</label><input type="text" value="29.1" class="w-full border border-blue-300 p-2 rounded text-base font-bold bg-blue-50 text-blue-800 text-center" readonly></div>
+                    <div class="col-span-2 mt-2 flex flex-col justify-center items-center"><label class="block text-[10px] text-slate-500">総合合否判定</label><span class="text-emerald-600 font-bold text-xl">● 合格</span></div>
+                </div>
+                <div class="flex justify-end pt-5 border-t">
+                    <button onclick="confirmData()" class="bg-blue-600 text-white px-10 py-3 rounded font-bold shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all">データ確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
-var files = [];
-var filterOpen = true;
-
-function classify(name) {
-  var l = name.toLowerCase();
-  if (l.indexOf('配合') >= 0 || l.indexOf('haigo') >= 0) return '配合計画書';
-  if (l.indexOf('フレッシュ') >= 0 || l.indexOf('fresh') >= 0) return 'フレッシュ試験';
-  if (l.indexOf('圧縮') >= 0 || l.indexOf('強度') >= 0 || l.indexOf('strength') >= 0) return '圧縮強度試験';
-  if (l.indexOf('納入') >= 0 || l.indexOf('伝票') >= 0 || l.indexOf('delivery') >= 0) return '納入伝票';
-  if (l.indexOf('打設') >= 0 || l.indexOf('計画') >= 0 || l.indexOf('plan') >= 0) return '打設計画書';
-  if (/\.(jpg|jpeg|png)$/i.test(l)) return '受入写真';
-  return '未分類';
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('border-blue-600', 'text-blue-600');
+        btn.classList.add('border-transparent', 'text-slate-500');
+    });
+    const activeBtn = document.getElementById('tab-btn-' + tabId);
+    activeBtn.classList.remove('border-transparent', 'text-slate-500');
+    activeBtn.classList.add('border-blue-600', 'text-blue-600');
 }
-
-var catStyles = {
-  '配合計画書': 'bg-blue-50 text-blue-700', 'フレッシュ試験': 'bg-green-50 text-green-700',
-  '圧縮強度試験': 'bg-purple-50 text-purple-700', '納入伝票': 'bg-amber-50 text-amber-700',
-  '打設計画書': 'bg-orange-50 text-orange-700', '受入写真': 'bg-pink-50 text-pink-700',
-  '未分類': 'bg-gray-100 text-gray-500'
-};
-
-var mockData = {
-  'フレッシュ試験': { type:'フレッシュコンクリート試験成績表', conf:0.95, fields:{ '試験日':'2024-06-15','工事名':'○○ビル新築工事','打設箇所':'2F スラブ','配合記号':'30-18-20N','工場名':'△△生コン','スランプ値':'18.0 cm','空気量':'4.5 %','コンクリート温度':'26.5 ℃','外気温':'28.0 ℃','塩化物含有量':'0.18 kg/m³','単位水量推定値':'168 kg/m³'}},
-  '圧縮強度試験': { type:'コンクリート圧縮強度試験成績表', conf:0.92, fields:{ '試験日':'2024-07-13','工事名':'○○ビル新築工事','打設日':'2024-06-15','材齢':'28日','配合記号':'30-18-20N','設計基準強度Fc':'30 N/mm²','呼び強度':'33 N/mm²','供試体1':'35.2 N/mm²','供試体2':'34.8 N/mm²','供試体3':'36.1 N/mm²','平均強度':'35.4 N/mm²','判定':'合格 (35.4 ≧ 30)'}},
-  '納入伝票': { type:'納入伝票', conf:0.88, fields:{ '伝票番号':'N-2024-0615-001','納入日':'2024-06-15','工場名':'△△生コン','配合記号':'30-18-20N','数量':'4.5 m³','出荷時刻':'08:30','到着時刻':'09:05','車両番号':'品川 100 あ 1234'}},
-  '配合計画書': { type:'配合計画書', conf:0.90, fields:{ '工場名':'△△生コン','配合記号':'30-18-20N','呼び強度':'33 N/mm²','スランプ':'18 cm','粗骨材最大寸法':'20 mm','セメント種類':'普通ポルトランドセメント','水セメント比':'48.5 %','単位水量':'170 kg/m³','単位セメント量':'351 kg/m³'}},
-  '受入写真': { type:'受入検査写真', conf:0.85, fields:{ '撮影日':'2024-06-15','工事名':'○○ビル新築工事','打設箇所':'2F スラブ','黒板記載_スランプ':'18.0 cm','黒板記載_空気量':'4.5 %','黒板記載_温度':'26.5 ℃'}},
-  '打設計画書': { type:'打設計画書', conf:0.87, fields:{ '工事名':'○○ビル新築工事','打設日':'2024-06-15','打設箇所':'2F スラブ','配合記号':'30-18-20N','予定数量':'45.0 m³','ポンプ車':'36m級'}},
-  '未分類': { type:'不明な書類', conf:0.60, fields:{ '工事名':'○○ビル新築工事','備考':'書類種別を自動判定できませんでした'}}
-};
-
-function formatSize(b) {
-  if (b < 1024) return b + ' B';
-  if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
-  return (b/(1024*1024)).toFixed(1) + ' MB';
-}
-
-function handleFiles(fileList) {
-  var accepted = ['application/pdf','image/jpeg','image/png'];
-  for (var i = 0; i < fileList.length; i++) {
-    var f = fileList[i];
-    if (accepted.indexOf(f.type) >= 0) {
-      var id = Date.now() + '-' + i + '-' + Math.random().toString(36).slice(2,8);
-      files.push({ id:id, name:f.name, size:f.size, ocrStatus:'processing', ocrResult:null });
-      startOcr(id, f.name);
+function toggleDetail(rowId, btnId) {
+    const detailRow = document.getElementById(rowId);
+    const btn = document.getElementById(btnId);
+    if (detailRow.classList.contains('hidden')) {
+        detailRow.classList.remove('hidden');
+        btn.innerText = '-';
+        btn.classList.add('bg-blue-50', 'text-blue-600', 'border-blue-300');
+    } else {
+        detailRow.classList.add('hidden');
+        btn.innerText = '+';
+        btn.classList.remove('bg-blue-50', 'text-blue-600', 'border-blue-300');
     }
-  }
-  render();
 }
-
-function startOcr(id, name) {
-  var delay = 800 + Math.random() * 1200;
-  setTimeout(function() {
-    var cat = classify(name);
-    var mock = mockData[cat] || mockData['未分類'];
-    for (var i = 0; i < files.length; i++) {
-      if (files[i].id === id) {
-        files[i].ocrStatus = 'done';
-        files[i].ocrResult = mock;
-        break;
-      }
-    }
-    render();
-  }, delay);
+function toggleAllChecks(source, targetClass) {
+    const checkboxes = document.querySelectorAll(targetClass);
+    checkboxes.forEach(cb => cb.checked = source.checked);
 }
-
-function removeFile(id) {
-  files = files.filter(function(f) { return f.id !== id; });
-  render();
+function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+function openPrintModal() {
+    const checkedCount = document.querySelectorAll('.cb-list:checked').length;
+    document.getElementById('print-count-display').innerText = checkedCount;
+    openModal('print-modal');
 }
-
-function toggleFilter() {
-  filterOpen = !filterOpen;
-  document.getElementById('filter-panel').style.display = filterOpen ? '' : 'none';
-  document.getElementById('filter-arrow').style.rotate = filterOpen ? '90deg' : '0deg';
+function startUpload() {
+    document.getElementById('up-step-1').classList.add('hidden');
+    document.getElementById('up-step-2').classList.remove('hidden');
+    let p = 0; const bar = document.getElementById('up-bar');
+    const iv = setInterval(() => {
+        p += 5; bar.style.width = p + '%';
+        if(p >= 100){
+            clearInterval(iv);
+            setTimeout(() => {
+                document.getElementById('up-step-2').classList.add('hidden');
+                document.getElementById('up-step-3').classList.remove('hidden');
+                document.getElementById('doc-badge').innerText = '2';
+            }, 300);
+        }
+    }, 50);
 }
-
-function openModal(id) {
-  var f = files.find(function(x){return x.id===id});
-  if (!f || !f.ocrResult) return;
-  document.getElementById('modal-filename').textContent = f.name;
-  var hdr = '<span style="display:inline-block;background:#e8f0fe;color:#1a6fc9;font-size:13px;font-weight:500;padding:4px 12px;border-radius:4px">' + f.ocrResult.type + '</span>';
-  hdr += '<span style="font-size:12px;color:#99a1af">信頼度: ' + Math.round(f.ocrResult.conf*100) + '%</span>';
-  hdr += '<span style="font-size:11px;background:#fffbeb;color:#d97706;padding:2px 8px;border-radius:4px">デモモード</span>';
-  document.getElementById('modal-header').innerHTML = hdr;
-  var fields = f.ocrResult.fields;
-  var keys = Object.keys(fields);
-  var rows = '';
-  for (var i = 0; i < keys.length; i++) {
-    var border = i < keys.length - 1 ? ' border-b border-[#f0f0f0]' : '';
-    rows += '<tr class="' + border + '"><td class="px-4 py-2 text-gray-500 font-medium">' + keys[i] + '</td><td class="px-4 py-2 text-gray-800">' + fields[keys[i]] + '</td></tr>';
-  }
-  document.getElementById('modal-fields').innerHTML = rows;
-  document.getElementById('modal').style.display = '';
+function confirmData() {
+    closeModal('check-modal');
+    const row = document.getElementById('verify-row-1');
+    row.classList.remove('bg-amber-50/20', 'hover:bg-amber-50/40');
+    row.cells[2].innerHTML = '<span class="text-[10px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded font-bold border border-emerald-200">確定済</span>';
+    row.cells[8].innerHTML = '<span class="text-xs">03/27</span>';
+    row.cells[9].innerHTML = '<span class="text-xs">あなた</span>';
+    row.cells[10].innerHTML = '<span class="text-[10px] text-slate-400 font-bold">完了</span>';
+    document.getElementById('doc-badge').style.display = 'none';
 }
-
-function closeModal() {
-  document.getElementById('modal').style.display = 'none';
-}
-
-function render() {
-  var filter = document.getElementById('filter-select').value;
-  var filtered = filter === '指定なし' ? files : files.filter(function(f) { return classify(f.name) === filter; });
-  var el = document.getElementById('content');
-  document.getElementById('btn-lot').disabled = files.length === 0;
-
-  if (files.length === 0) {
-    el.innerHTML = '<div id="dropzone" class="rounded border-2 border-dashed border-[#d0d0d0] p-16 text-center cursor-pointer bg-white hover:border-[#aaa] transition-colors" onclick="document.getElementById(\'file-input\').click()">' +
-      '<div class="flex flex-col items-center gap-3">' +
-      '<svg class="w-10 h-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/></svg>' +
-      '<p class="text-[14px] text-gray-600">ここに生コン関連書類をドラッグ＆ドロップ</p>' +
-      '<p class="text-[12px] text-gray-400">または クリックしてファイルを選択（PDF / JPG / PNG）</p>' +
-      '<p class="text-[11px] text-amber-500">アップロード後、自動でAI-OCRが実行されます</p>' +
-      '<div class="flex flex-wrap justify-center gap-1.5 mt-2 text-[11px] text-gray-400">配合計画書 | 打設計画書 | フレッシュ試験 | 圧縮強度試験 | 納入伝票 | 受入写真</div>' +
-      '</div></div>';
-    setupDrop(document.getElementById('dropzone'));
-    return;
-  }
-
-  var processing = files.some(function(f){return f.ocrStatus==='processing'});
-  var html = '<div class="mb-3 flex items-center justify-between"><p class="text-[13px] text-gray-500">' +
-    filtered.length + '件' + (filter !== '指定なし' ? ' (' + filter + ')' : '') + ' / 全' + files.length + '件' +
-    (processing ? ' <span class="text-blue-500">OCR処理中...</span>' : '') +
-    '</p><button onclick="files=[];render()" class="text-[12px] text-gray-400 hover:text-red-500">すべて削除</button></div>';
-
-  html += '<div id="table-wrap" class="rounded border border-[#e0e0e0] bg-white overflow-hidden"><table class="w-full text-[13px]"><thead><tr class="bg-[#fafafa] border-b border-[#e0e0e0]">' +
-    '<th class="text-left px-4 py-2.5 font-medium text-gray-500 w-8"><input type="checkbox"/></th>' +
-    '<th class="text-left px-4 py-2.5 font-medium text-gray-500">ファイル名</th>' +
-    '<th class="text-left px-4 py-2.5 font-medium text-gray-500 w-[120px]">分類</th>' +
-    '<th class="text-left px-4 py-2.5 font-medium text-gray-500 w-[160px]">OCRステータス</th>' +
-    '<th class="text-right px-4 py-2.5 font-medium text-gray-500 w-[90px]">サイズ</th>' +
-    '<th class="text-center px-4 py-2.5 font-medium text-gray-500 w-10"></th></tr></thead><tbody>';
-
-  for (var i = 0; i < filtered.length; i++) {
-    var f = filtered[i];
-    var cat = classify(f.name);
-    var cs = catStyles[cat] || catStyles['未分類'];
-    var status = '';
-    if (f.ocrStatus === 'processing') {
-      status = '<span class="inline-flex items-center gap-1 text-[12px] text-blue-500"><svg class="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>OCR処理中...</span>';
-    } else if (f.ocrStatus === 'done') {
-      status = '<a href="#" onclick="openModal(\'' + f.id + '\');return false" class="inline-flex items-center gap-1 text-[12px] text-green-600 hover-underline" style="cursor:pointer"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>抽出完了 →結果を見る</a>';
-    }
-    html += '<tr class="border-b border-[#f0f0f0] hover:bg-[#fafafa] transition-colors">' +
-      '<td class="px-4 py-2.5"><input type="checkbox"/></td>' +
-      '<td class="px-4 py-2.5 text-gray-800"><span class="truncate block max-w-md">' + f.name + '</span></td>' +
-      '<td class="px-4 py-2.5"><span class="inline-block rounded px-2 py-0.5 text-[12px] font-medium ' + cs + '">' + cat + '</span></td>' +
-      '<td class="px-4 py-2.5">' + status + '</td>' +
-      '<td class="px-4 py-2.5 text-right text-gray-500">' + formatSize(f.size) + '</td>' +
-      '<td class="px-4 py-2.5 text-center"><button onclick="removeFile(\'' + f.id + '\')" class="text-gray-300 hover:text-red-500 transition-colors" style="cursor:pointer">&times;</button></td></tr>';
-  }
-  html += '</tbody></table></div>';
-  html += '<div onclick="document.getElementById(\'file-input\').click()" class="mt-3 rounded border border-dashed border-[#d0d0d0] p-3 text-center text-[12px] text-gray-400 cursor-pointer hover:border-gray-400 hover:text-gray-500 transition-colors">+ さらにファイルを追加</div>';
-  el.innerHTML = html;
-  setupDrop(document.getElementById('table-wrap'));
-}
-
-function setupDrop(el) {
-  if (!el) return;
-  el.addEventListener('dragover', function(e) { e.preventDefault(); el.style.borderColor = '#1a6fc9'; });
-  el.addEventListener('dragleave', function(e) { e.preventDefault(); el.style.borderColor = ''; });
-  el.addEventListener('drop', function(e) { e.preventDefault(); el.style.borderColor = ''; if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files); });
-}
-
-// Init
-render();
 </script>
 </body>
 </html>
